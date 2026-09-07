@@ -194,6 +194,18 @@ const chatChoices = document.getElementById("chat-choices");
 let currentStep = 0;
 let storeInfo = null;
 let CHAT_FLOW = [];
+let botMood = "happy";
+
+const MOOD_CHOICES = {
+  happy: ["とても満足", "まあまあ満足", "テンポが良い", "分かりやすい"],
+  sad: ["かなり不満", "やや不満", "もう少し短く"],
+};
+
+function moodForChoice(label) {
+  if (MOOD_CHOICES.happy.includes(label)) return "happy";
+  if (MOOD_CHOICES.sad.includes(label)) return "sad";
+  return null;
+}
 
 // ------------------------------------------------------------
 // イベントハンドラ
@@ -260,7 +272,7 @@ async function renderStep(index) {
 
   if (step.type === "bot") {
     await wait(BOT_THINK_MS);
-    addMessage("bot", interpolate(step.text, storeInfo));
+    addMessage("bot", interpolate(step.text, storeInfo), botMood);
     await wait(STEP_PAUSE_MS);
     renderChoices(step.choices);
     scrollToBottom();
@@ -271,14 +283,36 @@ async function renderStep(index) {
   }
 }
 
-function addMessage(sender, text) {
-  const wrapper = document.createElement("div");
-  wrapper.className = `message ${sender}`;
+function addMessage(sender, text, mood = "neutral") {
+  const row = document.createElement("div");
+  row.className = `message-row ${sender}`;
+
+  if (sender === "bot" && mood && mood !== "neutral") {
+    const img = document.createElement("img");
+    img.src = `images/${mood}.png`;
+    img.alt = mood === "happy" ? "どうぞ" : "かなしい";
+    img.className = "avatar";
+    row.appendChild(img);
+  }
+
+  const bubble = document.createElement("div");
+  bubble.className = `message ${sender}`;
   const p = document.createElement("p");
   p.textContent = text;
-  wrapper.appendChild(p);
-  chatBody.appendChild(wrapper);
+  bubble.appendChild(p);
+
+  row.appendChild(bubble);
+  chatBody.appendChild(row);
   scrollToBottom();
+}
+
+async function handleChoice(label) {
+  addMessage("user", label);
+  const nextMood = moodForChoice(label);
+  if (nextMood) botMood = nextMood;
+  chatChoices.innerHTML = "";
+  await wait(STEP_PAUSE_MS);
+  renderStep(currentStep + 1);
 }
 
 function renderChoices(choices) {
@@ -296,13 +330,6 @@ function renderChoices(choices) {
 function disableChoices() {
   const buttons = chatChoices.querySelectorAll("button");
   buttons.forEach((btn) => (btn.disabled = true));
-}
-
-async function handleChoice(label) {
-  addMessage("user", label);
-  chatChoices.innerHTML = "";
-  await wait(STEP_PAUSE_MS);
-  renderStep(currentStep + 1);
 }
 
 function addFinalCard(text) {
