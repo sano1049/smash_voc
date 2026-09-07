@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "routes": [
-    { "src": "/api/place", "dest": "/api/place.js" },
-    { "src": "/(.*)", "dest": "/index.html" }
+  "rewrites": [
+    { "source": "/api/place", "destination": "/api/place.js" },
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
