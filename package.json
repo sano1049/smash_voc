@@ -2,7 +2,6 @@
   "name": "voc-smash-demo",
   "version": "1.0.0",
   "description": "VOC Smash demo with Google Places API proxy",
-  "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "dev": "node server.js"
