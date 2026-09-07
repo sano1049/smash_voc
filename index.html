@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VOC Smash | Googleマップ口コミから、あなた専用のアンケートを</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a href="#" class="logo">VOC Smash</a>
+      <nav class="nav-links">
+        <a href="#demo">デモ</a>
+        <a href="#features">特徴</a>
+        <a href="#pricing">料金</a>
+      </nav>
+      <a href="#demo" class="btn btn-small">無料で試す</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <span class="badge">Googleマップ連携</span>
+          <h1>口コミと店舗特性から、<br />最適なアンケートを自動生成</h1>
+          <p class="lead">
+            VOC Smash は、Googleマップの店舗情報を読み取り、<br class="hidden-sp" />
+            来店者に届ける質問をチャット形式で最適化するSaaSです。
+          </p>
+          <div class="hero-actions">
+            <a href="#demo" class="btn btn-primary">デモを試す</a>
+            <a href="#features" class="btn btn-secondary">詳しく見る</a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="chat-card preview-card">
+            <div class="chat-header">
+              <div class="store-info">
+                <strong>カフェ ブルー</strong>
+                <span class="rating">★ 4.2</span>
+              </div>
+            </div>
+            <div class="chat-body">
+              <div class="message bot">
+                <p>カフェ ブルーへようこそ！<br />本日はどのような目的で来店されましたか？</p>
+              </div>
+              <div class="choices">
+                <button class="choice">ランチ</button>
+                <button class="choice">打ち合わせ・作業</button>
+                <button class="choice">友人と</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="demo" class="demo-section">
+      <div class="container narrow">
+        <div class="section-head">
+          <h2>まずはデモで体験</h2>
+          <p>Googleマップの店舗URLを入力すると、VOC Smash がアンケートを自動生成します。</p>
+        </div>
+
+        <div class="demo-card">
+          <form id="demo-form" class="url-form">
+            <label for="map-url">Googleマップの店舗URL</label>
+            <div class="input-row">
+              <input
+                type="url"
+                id="map-url"
+                placeholder="https://maps.google.com/?q=..."
+                required
+              />
+              <button type="submit" class="btn btn-primary">アンケートを生成</button>
+            </div>
+          </form>
+
+          <div id="loading" class="loading" aria-live="polite" hidden>
+            <div class="spinner"></div>
+            <p>店舗情報を読み込んでいます…</p>
+          </div>
+
+          <div id="chat-app" class="chat-app" hidden>
+            <div class="chat-header">
+              <div class="store-info">
+                <strong id="store-name">--</strong>
+                <span id="store-rating" class="rating">★ --</span>
+              </div>
+              <span class="status">アンケート中</span>
+            </div>
+            <div id="chat-body" class="chat-body"></div>
+            <div id="chat-choices" class="chat-choices"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="features-section">
+      <div class="container">
+        <div class="section-head">
+          <h2>VOC Smash が選ばれる理由</h2>
+        </div>
+        <div class="features">
+          <div class="feature">
+            <div class="feature-icon">🔗</div>
+            <h3>URLだけで開始</h3>
+            <p>Googleマップの店舗URLを入れるだけ。面倒な質問作成はAIに任せられます。</p>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">💬</div>
+            <h3>チャット形式で高回答率</h3>
+            <p>吹き出しと選択肢でテンポよく進むため、従来のフォームより回答率が高まります。</p>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">⚡</div>
+            <h3>口コミ連携で最適化</h3>
+            <p>実際の口コミや店舗特性に応じて、次に聞くべき質問を自動で選びます。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" class="cta-section">
+      <div class="container narrow">
+        <h2>まずは無料で、あなたの店舗に合うアンケートを</h2>
+        <p>本登録なしでデモを試せます。導入の相談もお気軽にどうぞ。</p>
+        <a href="#demo" class="btn btn-primary btn-large">無料で試す</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 VOC Smash. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
