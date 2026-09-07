@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "VOC Smash demo with Google Places API proxy",
   "scripts": {
-    "start": "node server.js",
-    "dev": "node server.js"
+    "start": "node server.local.js",
+    "dev": "node server.local.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
