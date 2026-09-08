@@ -141,6 +141,14 @@ const CATEGORY_FLOWS = {
   },
 };
 
+const CATEGORY_TOPICS = {
+  confectionery: ["接客", "料理のクオリティ", "雰囲気", "価格", "待ち時間"],
+  food: ["接客", "料理のクオリティ", "雰囲気", "価格", "待ち時間"],
+  retail: ["接客", "商品の品質", "品揃え", "価格", "待ち時間"],
+  service: ["接客", "技術・仕上がり", "施設の清潔さ", "価格", "待ち時間"],
+  other: ["接客", "雰囲気", "価格", "待ち時間"],
+};
+
 function detectTopics(reviews) {
   const text = reviews.map((r) => r.text).join(" ");
   const scores = {};
@@ -205,11 +213,16 @@ function buildChatFlow(info) {
   const { name, rating, reviews, types, priceLevel } = info;
   const category = detectCategory(types || []);
   const flow = CATEGORY_FLOWS[category];
-  const topics = detectTopics(reviews || []);
+  const allowedTopics = CATEGORY_TOPICS[category] || Object.keys(TOPIC_KEYWORDS);
+  const topics = detectTopics(reviews || []).filter((t) => allowedTopics.includes(t));
   const sentiment = analyzeReviewSentiment(reviews || []);
-  const positiveTopics = sentiment.positives.map((p) => p.topic);
-  const negativeTopics = sentiment.negatives.map((n) => n.topic);
-  const topTopic = topics[0] || "雰囲気";
+  const positiveTopics = sentiment.positives
+    .filter((p) => allowedTopics.includes(p.topic))
+    .map((p) => p.topic);
+  const negativeTopics = sentiment.negatives
+    .filter((n) => allowedTopics.includes(n.topic))
+    .map((n) => n.topic);
+  const topTopic = topics[0] || flow.improveDefaults[0];
   const isHighRated = rating != null && rating >= 4.3;
   const isLowRated = rating != null && rating <= 3.9;
   const hasPriceLevel = priceLevel != null;
