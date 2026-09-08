@@ -84,6 +84,30 @@ const TOPIC_KEYWORDS = {
   技術・仕上がり: ["技術", "仕上がり", "カット", "施術", "診察", "アドバイス"],
 };
 
+const POSITIVE_WORDS = {
+  接客: ["丁寧", "親切", "優しい", "笑顔", "気遣い", "感じが良い"],
+  料理のクオリティ: ["美味", "美味しい", "絶品", "新鮮", "満足", "最高"],
+  雰囲気: ["落ち着く", "きれい", "オシャレ", "素敵", "居心地", "静か"],
+  価格: ["安い", "コスパ", "お得", "リーズナブル", "満足"],
+  待ち時間: ["早い", "スムーズ", "待たない", "効率", "すぐ"],
+  商品の品質: ["良い", "高品質", "丈夫", "使いやすい", "満足"],
+  品揃え: ["豊富", "揃う", "充実", "色々", "見応え"],
+  施設の清潔さ: ["清潔", "綺麗", "衛生的", "快適", "心地良い"],
+  技術・仕上がり: ["上手", "丁寧", "満足", "仕上がりが良い", "的確"],
+};
+
+const NEGATIVE_WORDS = {
+  接客: ["雑", "無愛想", "冷たい", "態度", "悪い", "無視"],
+  料理のクオリティ: ["不味", "美味しくない", "冷たい", "硬い", "残念", "微妙"],
+  雰囲気: ["うるさい", "暗い", "汚い", "古い", "狭い", "騒がしい"],
+  価格: ["高い", "高すぎ", "割高", "コスパ悪い", "もったいない"],
+  待ち時間: ["遅い", "待たされる", "混雑", "行列", "時間がかかる"],
+  商品の品質: ["悪い", "低品質", "壊れ", "使いにくい", "残念"],
+  品揃え: ["少ない", "ない", "品薄", "偏り", "物足りない"],
+  施設の清潔さ: ["汚い", "不潔", "臭い", "埃", "雑"],
+  技術・仕上がり: ["下手", "雑", "満足できない", "失敗", "不安"],
+};
+
 const CATEGORY_FLOWS = {
   confectionery: {
     purposeQuestion: "本日の来店目的を教えてください。",
@@ -133,35 +157,88 @@ function detectTopics(reviews) {
     .map(([topic]) => topic);
 }
 
+function analyzeReviewSentiment(reviews) {
+  const positives = [];
+  const negatives = [];
+
+  for (const [topic, words] of Object.entries(TOPIC_KEYWORDS)) {
+    const posWords = POSITIVE_WORDS[topic] || [];
+    const negWords = NEGATIVE_WORDS[topic] || [];
+    let posCount = 0;
+    let negCount = 0;
+
+    for (const review of reviews) {
+      const text = review.text || "";
+      if (!words.some((w) => text.includes(w))) continue;
+
+      if (posWords.some((w) => text.includes(w))) {
+        posCount++;
+      }
+      if (negWords.some((w) => text.includes(w))) {
+        negCount++;
+      }
+    }
+
+    if (posCount > 0) positives.push({ topic, count: posCount });
+    if (negCount > 0) negatives.push({ topic, count: negCount });
+  }
+
+  positives.sort((a, b) => b.count - a.count);
+  negatives.sort((a, b) => b.count - a.count);
+
+  return { positives, negatives };
+}
+
+function formatPriceLevel(priceLevel) {
+  const labels = { 0: "無料", 1: "安価", 2: "お手頃", 3: "やや高め", 4: "高級" };
+  return labels[priceLevel] || "";
+}
+
+function priceLevelChoices(priceLevel) {
+  const expensive = priceLevel >= 3;
+  return expensive
+    ? ["価格に見合っている", "もう少し安いと嬉しい", "高いと感じた", "特に気にしない"]
+    : ["コスパが良い", "価格に見合っている", "もう少し安いと嬉しい", "特に気にしない"];
+}
+
 function buildChatFlow(info) {
-  const { name, rating, reviews, types } = info;
+  const { name, rating, reviews, types, priceLevel } = info;
   const category = detectCategory(types || []);
   const flow = CATEGORY_FLOWS[category];
   const topics = detectTopics(reviews || []);
+  const sentiment = analyzeReviewSentiment(reviews || []);
+  const positiveTopics = sentiment.positives.map((p) => p.topic);
+  const negativeTopics = sentiment.negatives.map((n) => n.topic);
   const topTopic = topics[0] || "雰囲気";
   const isHighRated = rating != null && rating >= 4.3;
   const isLowRated = rating != null && rating <= 3.9;
+  const hasPriceLevel = priceLevel != null;
 
-  const secondStep = isHighRated
-    ? {
-        text: `高評価の口コミが多いこのお店。\nあなたが期待するポイントは何ですか？`,
-        choices: uniqueChoices([topTopic, ...flow.improveDefaults.slice(0, 3)]),
-      }
-    : isLowRated
-    ? {
-        text: `改善の声も見られるこのお店。\n気にしてほしい点は何ですか？`,
-        choices: uniqueChoices([topTopic, ...flow.improveDefaults.slice(0, 3)]),
-      }
-    : {
-        text: "ありがとうございます。\nお店を選んだ理由は何ですか？",
-        choices: ["口コミが良かった", "近くにあった", "雰囲気が好き", "価格が安い"],
-      };
+  let secondStep;
+  if (isHighRated && positiveTopics.length) {
+    const praise = positiveTopics.slice(0, 2).join("・");
+    secondStep = {
+      text: `口コミでも「${praise}」が評価されているこのお店。\nあなたが期待するポイントは何ですか？`,
+      choices: uniqueChoices([topTopic, ...flow.improveDefaults.slice(0, 3)]),
+    };
+  } else if (isLowRated && negativeTopics.length) {
+    const concern = negativeTopics.slice(0, 2).join("・");
+    secondStep = {
+      text: `口コミで「${concern}」の声もあるこのお店。\n気にしてほしい点は何ですか？`,
+      choices: uniqueChoices([topTopic, ...flow.improveDefaults.slice(0, 3)]),
+    };
+  } else {
+    secondStep = {
+      text: "ありがとうございます。\nお店を選んだ理由は何ですか？",
+      choices: ["口コミが良かった", "近くにあった", "雰囲気が好き", "価格が安い"],
+    };
+  }
 
   const improveChoices = topics.length
     ? uniqueChoices([...topics.slice(0, 2), ...flow.improveDefaults])
     : flow.improveDefaults;
 
-  return [
+  const steps = [
     {
       type: "bot",
       text: `{storeName}へようこそ！\n${flow.purposeQuestion}`,
@@ -173,6 +250,18 @@ function buildChatFlow(info) {
       text: `${flow.satisfactionLabel}をお聞かせください。`,
       choices: ["とても満足", "まあまあ満足", "やや不満", "かなり不満"],
     },
+  ];
+
+  if (hasPriceLevel) {
+    const priceLabel = formatPriceLevel(priceLevel);
+    steps.push({
+      type: "bot",
+      text: `Googleマップでは価格帯が「${priceLabel}」となっています。\n実際の価格についてはいかがでしたか？`,
+      choices: priceLevelChoices(priceLevel),
+    });
+  }
+
+  steps.push(
     {
       type: "bot",
       text: "改善してほしい点はありますか？（任意）",
@@ -186,8 +275,10 @@ function buildChatFlow(info) {
     {
       type: "final",
       text: "実際の VOC Smash では、\n口コミや店舗特性に合わせて質問が自動で最適化されます。",
-    },
-  ];
+    }
+  );
+
+  return steps;
 }
 
 function uniqueChoices(items) {
@@ -204,6 +295,7 @@ const chatApp = document.getElementById("chat-app");
 const storeNameEl = document.getElementById("store-name");
 const storeCategoryEl = document.getElementById("store-category");
 const storeRatingEl = document.getElementById("store-rating");
+const storePriceLevelEl = document.getElementById("store-price-level");
 const chatBody = document.getElementById("chat-body");
 const chatChoices = document.getElementById("chat-choices");
 
@@ -270,6 +362,7 @@ function initChat(info) {
   storeNameEl.textContent = info.name;
   storeCategoryEl.textContent = CATEGORY_LABELS[category] || "その他";
   storeRatingEl.textContent = info.rating != null ? `★ ${info.rating.toFixed(1)}` : "★ -";
+  storePriceLevelEl.textContent = formatPriceLevel(info.priceLevel) || "";
   chatApp.hidden = false;
   chatApp.scrollIntoView({ behavior: "smooth", block: "start" });
 

@@ -44,13 +44,15 @@ function extractPlaceIdFromUrl(url) {
   }
 }
 
+const EXTRA_FIELDS = "priceLevel,userRatingCount,editorialSummary";
+
 async function resolveByLatLng(name, lat, lng) {
   const response = await fetch("https://places.googleapis.com/v1/places:searchText", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       "X-Goog-Api-Key": GOOGLE_API_KEY,
-      "X-Goog-FieldMask": "places.id,places.displayName,places.rating,places.reviews,places.types",
+      "X-Goog-FieldMask": `places.id,places.displayName,places.rating,places.reviews,places.types,places.${EXTRA_FIELDS.replace(/,/g, ",places.")}`,
     },
     body: JSON.stringify({
       textQuery: name,
@@ -112,7 +114,7 @@ async function expandAndResolveShortUrl(url) {
 async function fetchPlaceDetails(placeId) {
   const apiUrl = `https://places.googleapis.com/v1/places/${encodeURIComponent(
     placeId
-  )}?fields=id,displayName,rating,reviews,types&languageCode=ja&key=${GOOGLE_API_KEY}`;
+  )}?fields=id,displayName,rating,reviews,types,${EXTRA_FIELDS}&languageCode=ja&key=${GOOGLE_API_KEY}`;
 
   const response = await fetch(apiUrl);
   const data = await response.json();
@@ -120,6 +122,11 @@ async function fetchPlaceDetails(placeId) {
     throw new Error(JSON.stringify(data));
   }
   return data;
+}
+
+function formatPriceLevel(priceLevel) {
+  const map = { PRICE_LEVEL_UNSPECIFIED: null, PRICE_LEVEL_FREE: 0, PRICE_LEVEL_INEXPENSIVE: 1, PRICE_LEVEL_MODERATE: 2, PRICE_LEVEL_EXPENSIVE: 3, PRICE_LEVEL_VERY_EXPENSIVE: 4 };
+  return map[priceLevel] ?? null;
 }
 
 function formatResponse(data, placeIdUsed) {
@@ -135,6 +142,9 @@ function formatResponse(data, placeIdUsed) {
     rating: data.rating ?? null,
     placeId: placeIdUsed,
     types: data.types || [],
+    priceLevel: formatPriceLevel(data.priceLevel),
+    userRatingCount: data.userRatingCount ?? null,
+    editorialSummary: data.editorialSummary?.text || null,
     reviews,
   };
 }

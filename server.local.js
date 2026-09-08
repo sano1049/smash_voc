@@ -33,7 +33,7 @@ function extractPlaceIdFromData(dataParam) {
 }
 
 const FIELD_MASK =
-  "places.id,places.displayName,places.rating,places.reviews,places.types";
+  "places.id,places.displayName,places.rating,places.reviews,places.types,places.priceLevel,places.userRatingCount,places.editorialSummary";
 
 async function resolveByLatLng(name, lat, lng) {
   const apiUrl = `https://places.googleapis.com/v1/places:searchText`;
@@ -175,7 +175,7 @@ app.get("/api/place", async (req, res) => {
     } else {
       const apiUrl = `https://places.googleapis.com/v1/places/${encodeURIComponent(
         placeId
-      )}?fields=id,displayName,rating,reviews,types&languageCode=ja&key=${GOOGLE_API_KEY}`;
+      )}?fields=id,displayName,rating,reviews,types,priceLevel,userRatingCount,editorialSummary&languageCode=ja&key=${GOOGLE_API_KEY}`;
 
       const response = await fetch(apiUrl);
       data = await response.json();
@@ -192,11 +192,23 @@ app.get("/api/place", async (req, res) => {
         rating: r.rating ?? null,
       }));
 
+    const priceLevelMap = {
+      PRICE_LEVEL_UNSPECIFIED: null,
+      PRICE_LEVEL_FREE: 0,
+      PRICE_LEVEL_INEXPENSIVE: 1,
+      PRICE_LEVEL_MODERATE: 2,
+      PRICE_LEVEL_EXPENSIVE: 3,
+      PRICE_LEVEL_VERY_EXPENSIVE: 4,
+    };
+
     res.json({
       name: data.displayName?.text || data.displayName || "名称不明",
       rating: data.rating ?? null,
       placeId: placeIdUsed,
       types: data.types || [],
+      priceLevel: priceLevelMap[data.priceLevel] ?? null,
+      userRatingCount: data.userRatingCount ?? null,
+      editorialSummary: data.editorialSummary?.text || null,
       reviews,
     });
   } catch (err) {
