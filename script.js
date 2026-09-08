@@ -65,6 +65,10 @@ function detectCategory(types) {
   return "other";
 }
 
+const CATEGORY_LABELS = Object.fromEntries(
+  CATEGORY_RULES.map((rule) => [rule.id, rule.label]).concat([["other", "その他"]])
+);
+
 // ------------------------------------------------------------
 // 口コミ解析＆動的質問生成
 // ------------------------------------------------------------
@@ -198,6 +202,7 @@ const mapUrlInput = document.getElementById("map-url");
 const loading = document.getElementById("loading");
 const chatApp = document.getElementById("chat-app");
 const storeNameEl = document.getElementById("store-name");
+const storeCategoryEl = document.getElementById("store-category");
 const storeRatingEl = document.getElementById("store-rating");
 const chatBody = document.getElementById("chat-body");
 const chatChoices = document.getElementById("chat-choices");
@@ -261,7 +266,9 @@ function setLoading(isLoading) {
 function initChat(info) {
   storeInfo = info;
   CHAT_FLOW = buildChatFlow(info);
+  const category = detectCategory(info.types || []);
   storeNameEl.textContent = info.name;
+  storeCategoryEl.textContent = CATEGORY_LABELS[category] || "その他";
   storeRatingEl.textContent = info.rating != null ? `★ ${info.rating.toFixed(1)}` : "★ -";
   chatApp.hidden = false;
   chatApp.scrollIntoView({ behavior: "smooth", block: "start" });
