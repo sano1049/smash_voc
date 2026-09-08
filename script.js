@@ -5,8 +5,8 @@
 // ------------------------------------------------------------
 
 const DEMO_DELAY = 1400; // ローディング演出時間（ms）
-const BOT_THINK_MS = 450; // ボット返答の間（ms）
-const STEP_PAUSE_MS = 350; // 選択肢表示までの間（ms）
+const BOT_THINK_MS = 700; // ボット返答の間（ms）
+const STEP_PAUSE_MS = 460; // 選択肢表示までの間（ms）
 
 // ダミー店舗データ（API が使えない場合のフォールバック）
 const DUMMY_STORES = [
@@ -117,7 +117,7 @@ const CATEGORY_FLOWS = {
   },
   food: {
     purposeQuestion: "本日の来店目的を教えてください。",
-    purposeChoices: ["ランチ", "ディナー", "打ち合わせ・作業", "友人・家族と"],
+    purposeChoices: ["ランチ", "ディナー", "会食・接待", "友人・家族と"],
     satisfactionLabel: "ご来店の感想",
     improveDefaults: ["接客", "料理のクオリティ", "店内環境", "価格", "特になし"],
   },
