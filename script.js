@@ -34,9 +34,14 @@ async function fetchStoreInfo(url) {
 // ------------------------------------------------------------
 const CATEGORY_RULES = [
   {
+    id: "confectionery",
+    label: "洋菓子店",
+    keywords: ["bakery", "pastry_shop", "dessert_shop", "cake_shop", "confectionery"],
+  },
+  {
     id: "food",
     label: "飲食",
-    keywords: ["restaurant", "cafe", "bar", "bakery", "meal_takeaway", "meal_delivery", "food"],
+    keywords: ["restaurant", "cafe", "bar", "meal_takeaway", "meal_delivery", "food"],
   },
   {
     id: "retail",
@@ -76,6 +81,12 @@ const TOPIC_KEYWORDS = {
 };
 
 const CATEGORY_FLOWS = {
+  confectionery: {
+    purposeQuestion: "本日の来店目的を教えてください。",
+    purposeChoices: ["自分用に購入", "ギフト", "テイクアウト", "友人・家族と"],
+    satisfactionLabel: "ご来店の感想",
+    improveDefaults: ["接客", "味", "見た目", "価格", "特になし"],
+  },
   food: {
     purposeQuestion: "本日の来店目的を教えてください。",
     purposeChoices: ["ランチ", "ディナー", "打ち合わせ・作業", "友人・家族と"],
