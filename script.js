@@ -210,7 +210,7 @@ function priceLevelChoices(priceLevel) {
 }
 
 function buildChatFlow(info) {
-  const { name, rating, reviews, types, priceLevel } = info;
+  const { name, rating, reviews, types, priceLevel, editorialSummary } = info;
   const category = detectCategory(types || []);
   const flow = CATEGORY_FLOWS[category];
   const allowedTopics = CATEGORY_TOPICS[category] || Object.keys(TOPIC_KEYWORDS);
@@ -226,6 +226,7 @@ function buildChatFlow(info) {
   const isHighRated = rating != null && rating >= 4.3;
   const isLowRated = rating != null && rating <= 3.9;
   const hasPriceLevel = priceLevel != null;
+  const hasEditorialSummary = !!editorialSummary;
 
   let secondStep;
   if (isHighRated && positiveTopics.length) {
@@ -274,6 +275,14 @@ function buildChatFlow(info) {
     });
   }
 
+  if (hasEditorialSummary) {
+    steps.push({
+      type: "bot",
+      text: `このお店は「${editorialSummary}」と紹介されています。\n実際に来店して、その点はいかがでしたか？`,
+      choices: ["強く感じた", "まあまあ感じた", "あまり感じられなかった", "特に気にしていない"],
+    });
+  }
+
   steps.push(
     {
       type: "bot",
@@ -287,7 +296,7 @@ function buildChatFlow(info) {
     },
     {
       type: "final",
-      text: "実際の VOC Smash では、\n口コミや店舗特性に合わせて質問が自動で最適化されます。",
+      text: "実際の Smash　VOCでは、\nさらに便利で面白いアンケートが簡単に作れます。",
     }
   );
 
@@ -323,9 +332,8 @@ const MOOD_CHOICES = {
 };
 
 function moodForChoice(label) {
-  if (MOOD_CHOICES.happy.includes(label)) return "happy";
   if (MOOD_CHOICES.sad.includes(label)) return "sad";
-  return null;
+  return "happy";
 }
 
 // ------------------------------------------------------------
@@ -432,8 +440,7 @@ function addMessage(sender, text, mood = "neutral") {
 
 async function handleChoice(label) {
   addMessage("user", label);
-  const nextMood = moodForChoice(label);
-  if (nextMood) botMood = nextMood;
+  botMood = moodForChoice(label);
   chatChoices.innerHTML = "";
   await wait(STEP_PAUSE_MS);
   renderStep(currentStep + 1);
