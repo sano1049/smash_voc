@@ -325,6 +325,7 @@ let currentStep = 0;
 let storeInfo = null;
 let CHAT_FLOW = [];
 let botMood = "happy";
+let lastSatisfaction = null;
 
 const MOOD_CHOICES = {
   happy: ["とても満足", "まあまあ満足", "テンポが良い", "分かりやすい"],
@@ -368,6 +369,7 @@ function resetDemo() {
   chatBody.innerHTML = "";
   chatChoices.innerHTML = "";
   chatApp.hidden = true;
+  lastSatisfaction = null;
 }
 
 function setLoading(isLoading) {
@@ -441,9 +443,35 @@ function addMessage(sender, text, mood = "neutral") {
 async function handleChoice(label) {
   addMessage("user", label);
   botMood = moodForChoice(label);
+
+  if (isSatisfactionChoice(label)) {
+    lastSatisfaction = label;
+    insertSatisfactionDeepDive(currentStep + 1);
+  }
+
   chatChoices.innerHTML = "";
   await wait(STEP_PAUSE_MS);
   renderStep(currentStep + 1);
+}
+
+const SATISFACTION_CHOICES = ["とても満足", "まあまあ満足", "やや不満", "かなり不満"];
+
+function isSatisfactionChoice(label) {
+  return SATISFACTION_CHOICES.includes(label);
+}
+
+function insertSatisfactionDeepDive(atIndex) {
+  if (!storeInfo) return;
+  const category = detectCategory(storeInfo.types || []);
+  const flow = CATEGORY_FLOWS[category];
+  const choices = flow.improveDefaults.filter((c) => c !== "特になし");
+
+  const isPositive = ["とても満足", "まあまあ満足"].includes(lastSatisfaction);
+  const text = isPositive
+    ? "満足いただけたとのこと、ありがとうございます。\n特に良かったポイントを教えてください。"
+    : "ご不便をおかけして申し訳ございません。\n特に改善してほしい点を教えてください。";
+
+  CHAT_FLOW.splice(atIndex, 0, { type: "bot", text, choices });
 }
 
 function renderChoices(choices) {
