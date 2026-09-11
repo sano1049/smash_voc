@@ -197,85 +197,85 @@ const CATEGORY_FLOWS = {
     purposeQuestion: "本日の来店目的を教えてください。",
     purposeChoices: ["自分用に購入", "ギフト", "テイクアウト", "友人・家族と"],
     satisfactionLabel: "ご来店の感想",
-    improveDefaults: ["接客", "味", "見た目", "価格", "特になし"],
+    improveDefaults: ["接客", "味", "見た目", "価格", "特にない"],
   },
   food: {
     purposeQuestion: "本日の来店目的を教えてください。",
     purposeChoices: ["ランチ", "ディナー", "会食・接待", "友人・家族と"],
     satisfactionLabel: "ご来店の感想",
-    improveDefaults: ["接客", "料理のクオリティ", "店内環境", "価格", "特になし"],
+    improveDefaults: ["接客", "料理のクオリティ", "店内環境", "価格", "特にない"],
   },
   hospital: {
     purposeQuestion: "本日の受診目的を教えてください。",
     purposeChoices: ["問診・検査", "処方箋", "通院・リハビリ", "健康診断"],
     satisfactionLabel: "受診の感想",
-    improveDefaults: ["接客", "説明のわかりやすさ", "待ち時間", "院内の清潔さ", "特になし"],
+    improveDefaults: ["接客", "説明のわかりやすさ", "待ち時間", "院内の清潔さ", "特にない"],
   },
   bank: {
     purposeQuestion: "本日のご利用目的を教えてください。",
     purposeChoices: ["窓口相談", "ローン・保険", "振込・手続き", "ATM利用"],
     satisfactionLabel: "ご利用の感想",
-    improveDefaults: ["接客", "説明のわかりやすさ", "待ち時間", "店舗の利便性", "特になし"],
+    improveDefaults: ["接客", "説明のわかりやすさ", "待ち時間", "店舗の利便性", "特にない"],
   },
   gym: {
     purposeQuestion: "本日のご利用目的を教えてください。",
     purposeChoices: ["トレーニング", "パーソナルレッスン", "グループレッスン", "見学・体験"],
     satisfactionLabel: "ご利用の感想",
-    improveDefaults: ["接客", "設備の充実度", "混雑具合", "清潔さ", "特になし"],
+    improveDefaults: ["接客", "設備の充実度", "混雑具合", "清潔さ", "特にない"],
   },
   hair_care: {
     purposeQuestion: "本日のご利用目的を教えてください。",
     purposeChoices: ["カット", "カラー・パーマ", "トリートメント", "相談"],
     satisfactionLabel: "施術の感想",
-    improveDefaults: ["接客", "技術・仕上がり", "店内の雰囲気", "価格", "特になし"],
+    improveDefaults: ["接客", "技術・仕上がり", "店内の雰囲気", "価格", "特にない"],
   },
   lodging: {
     purposeQuestion: "本日のご利用目的を教えてください。",
     purposeChoices: ["宿泊", "食事利用", "宴会・会議", "観光拠点"],
     satisfactionLabel: "宿泊・利用の感想",
-    improveDefaults: ["接客", "客室・設備", "食事", "清潔さ", "特になし"],
+    improveDefaults: ["接客", "客室・設備", "食事", "清潔さ", "特にない"],
   },
   tourist_attraction: {
     purposeQuestion: "本日のご来場目的を教えてください。",
     purposeChoices: ["観光", "散策", "写真撮影", "家族・友人と"],
     satisfactionLabel: "ご来場の感想",
-    improveDefaults: ["雰囲気", "アクセス", "案内・表示", "混雑具合", "特になし"],
+    improveDefaults: ["雰囲気", "アクセス", "案内・表示", "混雑具合", "特にない"],
   },
   supermarket: {
     purposeQuestion: "本日のご来店目的を教えてください。",
     purposeChoices: ["普段の買い物", "特売品を求めて", "夕食の材料", "日用品"],
     satisfactionLabel: "ご来店の感想",
-    improveDefaults: ["接客", "商品の品質", "品揃え", "店内の動線", "特になし"],
+    improveDefaults: ["接客", "商品の品質", "品揃え", "店内の動線", "特にない"],
   },
   shopping_mall: {
     purposeQuestion: "本日のご利用目的を教えてください。",
     purposeChoices: ["ショッピング", "食事", "映画・娯楽", "家族と"],
     satisfactionLabel: "ご利用の感想",
-    improveDefaults: ["接客", "店舗の充実度", "施設の使いやすさ", "清潔さ", "特になし"],
+    improveDefaults: ["接客", "店舗の充実度", "施設の使いやすさ", "清潔さ", "特にない"],
   },
   convenience_store: {
     purposeQuestion: "本日のご利用目的を教えてください。",
     purposeChoices: ["食料品購入", "ATM・宅配", "夜食", "急ぎの買い物"],
     satisfactionLabel: "ご利用の感想",
-    improveDefaults: ["接客", "商品の品質", "品揃え", "清潔さ", "特になし"],
+    improveDefaults: ["接客", "商品の品質", "品揃え", "清潔さ", "特にない"],
   },
   retail: {
     purposeQuestion: "本日のご来店の目的を教えてください。",
     purposeChoices: ["自分用に購入", "ギフト", "見て回る", "予約・取り置き"],
     satisfactionLabel: "ご来店の感想",
-    improveDefaults: ["接客", "商品の品質", "品揃え", "価格", "特になし"],
+    improveDefaults: ["接客", "商品の品質", "品揃え", "価格", "特にない"],
   },
   service: {
     purposeQuestion: "本日のご利用の目的を教えてください。",
     purposeChoices: ["初回利用", "定期利用", "相談", "ケア・メンテナンス"],
     satisfactionLabel: "サービスの感想",
-    improveDefaults: ["接客", "技術・仕上がり", "施設の清潔さ", "価格", "特になし"],
+    improveDefaults: ["接客", "技術・仕上がり", "施設の清潔さ", "価格", "特にない"],
   },
   other: {
     purposeQuestion: "本日のご来店の目的を教えてください。",
     purposeChoices: ["初めて来店", "定期利用", "友人・家族と", "その他"],
     satisfactionLabel: "ご利用の感想",
-    improveDefaults: ["接客", "雰囲気", "価格", "待ち時間", "特になし"],
+    improveDefaults: ["接客", "雰囲気", "価格", "待ち時間", "特にない"],
   },
 };
 
@@ -611,7 +611,7 @@ function insertSatisfactionDeepDive(atIndex) {
   if (!storeInfo) return;
   const category = detectCategory(storeInfo.types || []);
   const flow = CATEGORY_FLOWS[category];
-  const choices = flow.improveDefaults.filter((c) => c !== "特になし");
+  const choices = flow.improveDefaults;
 
   const isPositive = ["とても満足", "まあまあ満足"].includes(lastSatisfaction);
   const text = isPositive
