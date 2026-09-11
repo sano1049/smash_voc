@@ -39,9 +39,14 @@ const CATEGORY_RULES = [
     keywords: ["bakery", "pastry_shop", "dessert_shop", "cake_shop", "confectionery"],
   },
   {
+    id: "cafe",
+    label: "カフェ",
+    keywords: ["cafe", "coffee_shop"],
+  },
+  {
     id: "food",
     label: "飲食",
-    keywords: ["restaurant", "cafe", "bar", "meal_takeaway", "meal_delivery", "food"],
+    keywords: ["restaurant", "bar", "meal_takeaway", "meal_delivery", "food"],
   },
   {
     id: "hospital",
@@ -199,6 +204,12 @@ const CATEGORY_FLOWS = {
     satisfactionLabel: "ご来店の感想",
     improveDefaults: ["接客", "味", "見た目", "価格", "特にない"],
   },
+  cafe: {
+    purposeQuestion: "本日はどのようなシーンでお越しでしたか？",
+    purposeChoices: ["作業・勉強", "ひまつぶし", "ひとりで過ごす", "待ち合わせ", "友人・家族と"],
+    satisfactionLabel: "ご来店の感想",
+    improveDefaults: ["接客", "ドリンクのクオリティ", "店内環境", "価格", "特にない"],
+  },
   food: {
     purposeQuestion: "本日の来店目的を教えてください。",
     purposeChoices: ["ランチ", "ディナー", "会食・接待", "友人・家族と"],
@@ -281,6 +292,7 @@ const CATEGORY_FLOWS = {
 
 const CATEGORY_TOPICS = {
   confectionery: ["接客", "料理のクオリティ", "雰囲気", "価格", "待ち時間"],
+  cafe: ["接客", "料理のクオリティ", "雰囲気", "価格", "待ち時間"],
   food: ["接客", "料理のクオリティ", "雰囲気", "価格", "待ち時間"],
   hospital: ["接客", "説明のわかりやすさ", "待ち時間", "院内の清潔さ"],
   bank: ["接客", "説明のわかりやすさ", "待ち時間", "店舗の利便性"],
@@ -377,38 +389,38 @@ function buildChatFlow(info) {
 
   let secondStep;
   if (isHighRated && positiveTopics.length) {
-    const praise = positiveTopics.slice(0, 2).join("・");
+    const praise = positiveTopics.slice(0, 2).map(escapeHtml).join("・");
     secondStep = {
-      text: `口コミでも「${praise}」が評価されているこのお店。\nあなたが期待するポイントは何ですか？`,
-      choices: uniqueChoices([topTopic, ...flow.improveDefaults.slice(0, 3)]),
+      text: `口コミでも「${praise}」が評価されています。\nあなたが<b>期待したポイント</b>は何でしょうか？`,
+      choices: uniqueChoices([escapeHtml(topTopic), ...flow.improveDefaults.map(escapeHtml).slice(0, 3)]),
     };
   } else if (isLowRated && negativeTopics.length) {
-    const concern = negativeTopics.slice(0, 2).join("・");
+    const concern = negativeTopics.slice(0, 2).map(escapeHtml).join("・");
     secondStep = {
-      text: `口コミで「${concern}」の声もあるこのお店。\n気にしてほしい点は何ですか？`,
-      choices: uniqueChoices([topTopic, ...flow.improveDefaults.slice(0, 3)]),
+      text: `口コミで「${concern}」の声もあります。\nお店として<b>気にしてほしい点</b>は何でしょうか？`,
+      choices: uniqueChoices([escapeHtml(topTopic), ...flow.improveDefaults.map(escapeHtml).slice(0, 3)]),
     };
   } else {
     secondStep = {
-      text: "ありがとうございます。\nお店を選んだ理由は何ですか？",
+      text: "ありがとうございます。\nお店を<b>選んでいただいた理由</b>は何でしょうか？",
       choices: ["口コミが良かった", "近くにあった", "雰囲気が好き", "価格が安い"],
     };
   }
 
   const improveChoices = topics.length
-    ? uniqueChoices([...topics.slice(0, 2), ...flow.improveDefaults, "特にない"])
+    ? uniqueChoices([...topics.slice(0, 2).map(escapeHtml), ...flow.improveDefaults.map(escapeHtml), "特にない"])
     : flow.improveDefaults;
 
   const steps = [
     {
       type: "bot",
-      text: `{storeName}へようこそ！\n${flow.purposeQuestion}`,
+      text: `<b>${escapeHtml(name)}</b>へようこそ！\n本日はどのような<b>来店目的</b>でお越しでしたか？`,
       choices: flow.purposeChoices,
     },
     { type: "bot", ...secondStep },
     {
       type: "bot",
-      text: `${flow.satisfactionLabel}をお聞かせください。`,
+      text: `${escapeHtml(flow.satisfactionLabel)}を<b>お聞かせください</b>。`,
       choices: ["とても満足", "まあまあ満足", "やや不満", "かなり不満"],
     },
   ];
@@ -417,7 +429,7 @@ function buildChatFlow(info) {
     const priceLabel = formatPriceLevel(priceLevel);
     steps.push({
       type: "bot",
-      text: `Googleマップでは価格帯が「${priceLabel}」となっています。\n実際の価格についてはいかがでしたか？`,
+      text: `Googleマップでは価格帯が「${escapeHtml(priceLabel)}」です。\n実際の<b>価格</b>についてはいかがでしたか？`,
       choices: priceLevelChoices(priceLevel),
     });
   }
@@ -425,7 +437,7 @@ function buildChatFlow(info) {
   if (hasEditorialSummary) {
     steps.push({
       type: "bot",
-      text: `このお店は「${editorialSummary}」と紹介されています。\n実際に来店して、その点はいかがでしたか？`,
+      text: `このお店は「${escapeHtml(editorialSummary)}」と紹介されています。\n実際に来店して、その<b>ポイント</b>はいかがでしたか？`,
       choices: ["強く感じた", "まあまあ感じた", "あまり感じられなかった", "特に気にしていない"],
     });
   }
@@ -433,7 +445,7 @@ function buildChatFlow(info) {
   steps.push(
     {
       type: "bot",
-      text: "改善してほしい点はありますか？（任意）",
+      text: "改善して<b>ほしい点</b>はありますか？（任意）",
       choices: improveChoices,
     },
     {
@@ -443,7 +455,7 @@ function buildChatFlow(info) {
     },
     {
       type: "final",
-      text: "実際の Smash　VOCでは、\nさらに便利で面白いアンケートが簡単に作れます。",
+      text: "実際の Smash VOCでは、\nさらに便利で面白いアンケートが簡単に作れます。",
     }
   );
 
@@ -454,9 +466,11 @@ function uniqueChoices(items) {
   return [...new Set(items)].slice(0, 4);
 }
 
-// ------------------------------------------------------------
-// DOM 要素
-// ------------------------------------------------------------
+function updateStepCount() {
+  if (!stepCountEl || !CHAT_FLOW.length) return;
+  const remaining = CHAT_FLOW.slice(currentStep).filter((s) => s.type === "bot").length;
+  stepCountEl.textContent = remaining > 0 ? `あと ${remaining} 問` : "";
+}
 const demoForm = document.getElementById("demo-form");
 const mapUrlInput = document.getElementById("map-url");
 const loading = document.getElementById("loading");
@@ -467,6 +481,7 @@ const storeRatingEl = document.getElementById("store-rating");
 const storePriceLevelEl = document.getElementById("store-price-level");
 const chatBody = document.getElementById("chat-body");
 const chatChoices = document.getElementById("chat-choices");
+const stepCountEl = document.getElementById("step-count");
 
 let currentStep = 0;
 let storeInfo = null;
@@ -517,6 +532,7 @@ function resetDemo() {
   chatChoices.innerHTML = "";
   chatApp.hidden = true;
   lastSatisfaction = null;
+  if (stepCountEl) stepCountEl.textContent = "";
 }
 
 function setLoading(isLoading) {
@@ -551,6 +567,8 @@ async function renderStep(index) {
   // 以前の選択肢を無効化
   disableChoices();
 
+  updateStepCount();
+
   if (step.type === "bot") {
     await wait(BOT_THINK_MS);
     addMessage("bot", interpolate(step.text, storeInfo), botMood);
@@ -560,6 +578,7 @@ async function renderStep(index) {
   } else if (step.type === "final") {
     await wait(BOT_THINK_MS);
     addFinalCard(interpolate(step.text, storeInfo));
+    if (stepCountEl) stepCountEl.textContent = "";
     scrollToBottom();
   }
 }
@@ -579,7 +598,11 @@ function addMessage(sender, text, mood = "neutral") {
   const bubble = document.createElement("div");
   bubble.className = `message ${sender}`;
   const p = document.createElement("p");
-  p.textContent = text;
+  if (sender === "bot") {
+    p.innerHTML = text.replace(/\n/g, "<br>");
+  } else {
+    p.textContent = text;
+  }
   bubble.appendChild(p);
 
   row.appendChild(bubble);
@@ -615,8 +638,8 @@ function insertSatisfactionDeepDive(atIndex) {
 
   const isPositive = ["とても満足", "まあまあ満足"].includes(lastSatisfaction);
   const text = isPositive
-    ? "満足いただけたとのこと、ありがとうございます。\n特に良かったポイントを教えてください。"
-    : "ご不便をおかけして申し訳ございません。\n特に改善してほしい点を教えてください。";
+    ? "満足いただけたとのこと、ありがとうございます。\n特に<b>良かったポイント</b>を教えてください。"
+    : "ご不便をおかけして申し訳ございません。\n特に<b>改善してほしい点</b>を教えてください。";
 
   CHAT_FLOW.splice(atIndex, 0, { type: "bot", text, choices });
 }
