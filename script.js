@@ -44,14 +44,59 @@ const CATEGORY_RULES = [
     keywords: ["restaurant", "cafe", "bar", "meal_takeaway", "meal_delivery", "food"],
   },
   {
+    id: "hospital",
+    label: "病院・医療機関",
+    keywords: ["hospital", "doctor", "dentist", "medical_lab", "physiotherapist"],
+  },
+  {
+    id: "bank",
+    label: "銀行",
+    keywords: ["bank", "atm"],
+  },
+  {
+    id: "gym",
+    label: "フィットネスジム",
+    keywords: ["gym", "fitness_center"],
+  },
+  {
+    id: "hair_care",
+    label: "美容院・理髪店",
+    keywords: ["hair_care", "beauty_salon"],
+  },
+  {
+    id: "lodging",
+    label: "宿泊施設",
+    keywords: ["lodging", "hotel", "motel", "guest_house", "hostel", "resort"],
+  },
+  {
+    id: "tourist_attraction",
+    label: "観光名所",
+    keywords: ["tourist_attraction", "point_of_interest", "landmark", "museum", "park", "amusement_park", "zoo", "aquarium"],
+  },
+  {
+    id: "supermarket",
+    label: "スーパーマーケット",
+    keywords: ["supermarket"],
+  },
+  {
+    id: "shopping_mall",
+    label: "ショッピングモール",
+    keywords: ["shopping_mall"],
+  },
+  {
+    id: "convenience_store",
+    label: "コンビニエンスストア",
+    keywords: ["convenience_store"],
+  },
+  {
     id: "retail",
     label: "小売",
-    keywords: ["store", "shopping_mall", "supermarket", "convenience_store", "clothing_store", "electronics_store", "home_goods_store", "book_store", "jewelry_store", "shoe_store", "department_store", "furniture_store"],
+    keywords: ["store", "clothing_store", "electronics_store", "home_goods_store", "book_store", "jewelry_store", "shoe_store", "department_store", "furniture_store"],
   },
   {
     id: "service",
     label: "サービス業",
-    keywords: ["beauty_salon", "hair_care", "spa", "gym", "health", "dentist", "doctor", "hospital", "bank", "atm", "post_office", "lodging", "travel_agency", "real_estate", "insurance_agency", "lawyer"],
+    keywords: ["spa", "health", "post_office", "travel_agency", "real_estate", "insurance_agency", "lawyer"],
   },
 ];
 
@@ -82,6 +127,19 @@ const TOPIC_KEYWORDS = {
   品揃え: ["品揃え", "種類", "在庫", "取り扱い", "ラインナップ"],
   施設の清潔さ: ["清潔", "綺麗", "汚い", "衛生", "臭い", "快適"],
   技術・仕上がり: ["技術", "仕上がり", "カット", "施術", "診察", "アドバイス"],
+  院内の清潔さ: ["清潔", "綺麗", "院内", "衛生", "消毒", "臭い"],
+  説明のわかりやすさ: ["説明", "わかりやすい", "分かりやす", "納得", "不安"],
+  予約のしやすさ: ["予約", "取りやすい", "取れない", "電話", "ネット"],
+  店舗の利便性: ["利便性", "近い", "アクセス", "営業時間", "駐車場"],
+  設備の充実度: ["設備", "機材", "充実", "新しい", "整う", "少ない"],
+  混雑具合: ["混雑", "空いている", "人が多い", "静か", "にぎやか", "込む"],
+  店内の雰囲気: ["雰囲気", "内装", "落ち着く", "オシャレ", "清潔", "店内"],
+  "客室・設備": ["客室", "部屋", "設備", "ベッド", "アメニティ", "広い"],
+  食事: ["食事", "朝食", "夕食", "美味", "バイキング", "メニュー"],
+  アクセス: ["アクセス", "駅", "バス", "近い", "遠い", "駐車場"],
+  案内・表示: ["案内", "表示", "看板", "分かりやすい", "地図", "案内所"],
+  店内の動線: ["動線", "棚", "レジ", "通路", "買い物", "分かりやすい"],
+  施設の使いやすさ: ["使いやすさ", "案内", "エレベーター", "トイレ", "ベンチ", "休憩"],
 };
 
 const POSITIVE_WORDS = {
@@ -94,6 +152,19 @@ const POSITIVE_WORDS = {
   品揃え: ["豊富", "揃う", "充実", "色々", "見応え"],
   施設の清潔さ: ["清潔", "綺麗", "衛生的", "快適", "心地良い"],
   技術・仕上がり: ["上手", "丁寧", "満足", "仕上がりが良い", "的確"],
+  院内の清潔さ: ["清潔", "綺麗", "衛生的", "快適", "心地良い"],
+  説明のわかりやすさ: ["わかりやすい", "丁寧", "納得", "安心"],
+  予約のしやすさ: ["取りやすい", "スムーズ", "便利"],
+  店舗の利便性: ["近い", "便利", "駐車場", "アクセス"],
+  設備の充実度: ["充実", "新しい", "整う", "豊富"],
+  混雑具合: ["空いている", "静か", "快適", "ゆっくり"],
+  店内の雰囲気: ["落ち着く", "オシャレ", "きれい", "居心地"],
+  "客室・設備": ["綺麗", "広い", "快適", "充実"],
+  食事: ["美味", "豊富", "満足", "朝食"],
+  アクセス: ["近い", "便利", "駅", "バス"],
+  案内・表示: ["分かりやすい", "親切", "充実"],
+  店内の動線: ["分かりやすい", "買いやすい", "スムーズ"],
+  施設の使いやすさ: ["使いやすい", "便利", "快適"],
 };
 
 const NEGATIVE_WORDS = {
@@ -106,6 +177,19 @@ const NEGATIVE_WORDS = {
   品揃え: ["少ない", "ない", "品薄", "偏り", "物足りない"],
   施設の清潔さ: ["汚い", "不潔", "臭い", "埃", "雑"],
   技術・仕上がり: ["下手", "雑", "満足できない", "失敗", "不安"],
+  院内の清潔さ: ["汚い", "不潔", "臭い", "埃", "雑"],
+  説明のわかりやすさ: ["わかりにくい", "不充分", "説明不足", "不安"],
+  予約のしやすさ: ["取れない", "電話がつながらない", "面倒", "不便"],
+  店舗の利便性: ["遠い", "不便", "駐車場がない", "営業時間"],
+  設備の充実度: ["古い", "少ない", "整っていない", "不満"],
+  混雑具合: ["混雑", "込む", "人が多い", "待たされる", "うるさい"],
+  店内の雰囲気: ["うるさい", "暗い", "汚い", "古い", "狭い"],
+  "客室・設備": ["狭い", "古い", "不潔", "不足", "不満"],
+  食事: ["不味", "少ない", "バリエーション", "不満"],
+  アクセス: ["遠い", "不便", "駅から", "バス"],
+  案内・表示: ["分かりにくい", "少ない", "不親切", "迷う"],
+  店内の動線: ["分かりにくい", "混雑", "レジ待ち", "不便"],
+  施設の使いやすさ: ["使いにくい", "不便", "不親切", "不足"],
 };
 
 const CATEGORY_FLOWS = {
@@ -120,6 +204,60 @@ const CATEGORY_FLOWS = {
     purposeChoices: ["ランチ", "ディナー", "会食・接待", "友人・家族と"],
     satisfactionLabel: "ご来店の感想",
     improveDefaults: ["接客", "料理のクオリティ", "店内環境", "価格", "特になし"],
+  },
+  hospital: {
+    purposeQuestion: "本日の受診目的を教えてください。",
+    purposeChoices: ["問診・検査", "処方箋", "通院・リハビリ", "健康診断"],
+    satisfactionLabel: "受診の感想",
+    improveDefaults: ["接客", "説明のわかりやすさ", "待ち時間", "院内の清潔さ", "特になし"],
+  },
+  bank: {
+    purposeQuestion: "本日のご利用目的を教えてください。",
+    purposeChoices: ["窓口相談", "ローン・保険", "振込・手続き", "ATM利用"],
+    satisfactionLabel: "ご利用の感想",
+    improveDefaults: ["接客", "説明のわかりやすさ", "待ち時間", "店舗の利便性", "特になし"],
+  },
+  gym: {
+    purposeQuestion: "本日のご利用目的を教えてください。",
+    purposeChoices: ["トレーニング", "パーソナルレッスン", "グループレッスン", "見学・体験"],
+    satisfactionLabel: "ご利用の感想",
+    improveDefaults: ["接客", "設備の充実度", "混雑具合", "清潔さ", "特になし"],
+  },
+  hair_care: {
+    purposeQuestion: "本日のご利用目的を教えてください。",
+    purposeChoices: ["カット", "カラー・パーマ", "トリートメント", "相談"],
+    satisfactionLabel: "施術の感想",
+    improveDefaults: ["接客", "技術・仕上がり", "店内の雰囲気", "価格", "特になし"],
+  },
+  lodging: {
+    purposeQuestion: "本日のご利用目的を教えてください。",
+    purposeChoices: ["宿泊", "食事利用", "宴会・会議", "観光拠点"],
+    satisfactionLabel: "宿泊・利用の感想",
+    improveDefaults: ["接客", "客室・設備", "食事", "清潔さ", "特になし"],
+  },
+  tourist_attraction: {
+    purposeQuestion: "本日のご来場目的を教えてください。",
+    purposeChoices: ["観光", "散策", "写真撮影", "家族・友人と"],
+    satisfactionLabel: "ご来場の感想",
+    improveDefaults: ["雰囲気", "アクセス", "案内・表示", "混雑具合", "特になし"],
+  },
+  supermarket: {
+    purposeQuestion: "本日のご来店目的を教えてください。",
+    purposeChoices: ["普段の買い物", "特売品を求めて", "夕食の材料", "日用品"],
+    satisfactionLabel: "ご来店の感想",
+    improveDefaults: ["接客", "商品の品質", "品揃え", "店内の動線", "特になし"],
+  },
+  shopping_mall: {
+    purposeQuestion: "本日のご利用目的を教えてください。",
+    purposeChoices: ["ショッピング", "食事", "映画・娯楽", "家族と"],
+    satisfactionLabel: "ご利用の感想",
+    improveDefaults: ["接客", "店舗の充実度", "施設の使いやすさ", "清潔さ", "特になし"],
+  },
+  convenience_store: {
+    purposeQuestion: "本日のご利用目的を教えてください。",
+    purposeChoices: ["食料品購入", "ATM・宅配", "夜食", "急ぎの買い物"],
+    satisfactionLabel: "ご利用の感想",
+    improveDefaults: ["接客", "商品の品質", "品揃え", "清潔さ", "特になし"],
   },
   retail: {
     purposeQuestion: "本日のご来店の目的を教えてください。",
@@ -144,6 +282,15 @@ const CATEGORY_FLOWS = {
 const CATEGORY_TOPICS = {
   confectionery: ["接客", "料理のクオリティ", "雰囲気", "価格", "待ち時間"],
   food: ["接客", "料理のクオリティ", "雰囲気", "価格", "待ち時間"],
+  hospital: ["接客", "説明のわかりやすさ", "待ち時間", "院内の清潔さ"],
+  bank: ["接客", "説明のわかりやすさ", "待ち時間", "店舗の利便性"],
+  gym: ["接客", "設備の充実度", "混雑具合", "清潔さ"],
+  hair_care: ["接客", "技術・仕上がり", "店内の雰囲気", "価格"],
+  lodging: ["接客", "客室・設備", "食事", "清潔さ"],
+  tourist_attraction: ["雰囲気", "アクセス", "案内・表示", "混雑具合"],
+  supermarket: ["接客", "商品の品質", "品揃え", "店内の動線"],
+  shopping_mall: ["接客", "店舗の充実度", "施設の使いやすさ", "清潔さ"],
+  convenience_store: ["接客", "商品の品質", "品揃え", "清潔さ"],
   retail: ["接客", "商品の品質", "品揃え", "価格", "待ち時間"],
   service: ["接客", "技術・仕上がり", "施設の清潔さ", "価格", "待ち時間"],
   other: ["接客", "雰囲気", "価格", "待ち時間"],
