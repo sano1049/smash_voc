@@ -293,6 +293,25 @@ h1 {
 
 .chat-app {
   margin-top: 24px;
+  position: relative;
+  border-radius: calc(var(--radius) + 4px);
+  background: linear-gradient(135deg, #f472b6, #facc15, #4ade80, #38bdf8, #a78bfa, #f472b6);
+  background-size: 200% 200%;
+  animation: rainbowBorder 6s ease infinite;
+  padding: 4px;
+  box-shadow: var(--shadow);
+}
+
+@keyframes rainbowBorder {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.chat-app-inner {
+  background: #fff;
+  border-radius: var(--radius);
+  overflow: hidden;
 }
 
 .chat-header {
