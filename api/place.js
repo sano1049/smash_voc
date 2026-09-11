@@ -45,25 +45,30 @@ function extractPlaceIdFromUrl(url) {
 }
 
 const EXTRA_FIELDS = "priceLevel,userRatingCount,editorialSummary";
+const FIELD_MASK = `places.id,places.displayName,places.rating,places.reviews,places.types,places.${EXTRA_FIELDS.replace(/,/g, ",places.")}`;
 
-async function resolveByLatLng(name, lat, lng) {
+async function resolveByTextQuery(textQuery, locationBias = null) {
+  const body = {
+    textQuery,
+    languageCode: "ja",
+  };
+  if (locationBias) {
+    body.locationBias = {
+      circle: {
+        center: { latitude: locationBias.lat, longitude: locationBias.lng },
+        radius: 50,
+      },
+    };
+  }
+
   const response = await fetch("https://places.googleapis.com/v1/places:searchText", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       "X-Goog-Api-Key": GOOGLE_API_KEY,
-      "X-Goog-FieldMask": `places.id,places.displayName,places.rating,places.reviews,places.types,places.${EXTRA_FIELDS.replace(/,/g, ",places.")}`,
+      "X-Goog-FieldMask": FIELD_MASK,
     },
-    body: JSON.stringify({
-      textQuery: name,
-      locationBias: {
-        circle: {
-          center: { latitude: lat, longitude: lng },
-          radius: 50,
-        },
-      },
-      languageCode: "ja",
-    }),
+    body: JSON.stringify(body),
   });
 
   const data = await response.json();
@@ -71,6 +76,10 @@ async function resolveByLatLng(name, lat, lng) {
     throw new Error(JSON.stringify(data));
   }
   return data.places?.[0] || null;
+}
+
+async function resolveByLatLng(name, lat, lng) {
+  return resolveByTextQuery(name, { lat, lng });
 }
 
 async function resolvePlaceFromLongUrl(url) {
@@ -102,6 +111,15 @@ async function expandAndResolveShortUrl(url) {
 
     if (/(ChIJ[0-9A-Za-z_-]{23,})/.test(expanded)) {
       return { url: expanded, resolved: null };
+    }
+
+    // アプリ共有URL: maps.google.com?q=...&ftid=...
+    const parsed = new URL(expanded);
+    const ftid = parsed.searchParams.get("ftid");
+    const q = parsed.searchParams.get("q");
+    if (ftid && q) {
+      const resolved = await resolveByTextQuery(decodeURIComponent(q));
+      return { url: expanded, resolved };
     }
 
     const resolved = await resolvePlaceFromLongUrl(expanded);
@@ -182,6 +200,20 @@ export default async function handler(req, res) {
 
     const placeId = resolvedPlace?.id || extractPlaceIdFromUrl(targetUrl);
     if (!placeId) {
+      // maps.google.com?q=...&ftid=... 形式への直接対応
+      try {
+        const parsed = new URL(targetUrl);
+        const ftid = parsed.searchParams.get("ftid");
+        const q = parsed.searchParams.get("q");
+        if (ftid && q) {
+          resolvedPlace = await resolveByTextQuery(decodeURIComponent(q));
+        }
+      } catch {
+        // ignore
+      }
+    }
+
+    if (!resolvedPlace?.id && !placeId) {
       return res.status(400).json({ error: "Could not extract place_id from URL" });
     }
 
