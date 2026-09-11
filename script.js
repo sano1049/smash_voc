@@ -71,7 +71,7 @@ const CATEGORY_RULES = [
   {
     id: "tourist_attraction",
     label: "観光名所",
-    keywords: ["tourist_attraction", "point_of_interest", "landmark", "museum", "park", "amusement_park", "zoo", "aquarium"],
+    keywords: ["tourist_attraction", "landmark", "museum", "park", "amusement_park", "zoo", "aquarium"],
   },
   {
     id: "supermarket",
