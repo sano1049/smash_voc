@@ -396,7 +396,7 @@ function buildChatFlow(info) {
   }
 
   const improveChoices = topics.length
-    ? uniqueChoices([...topics.slice(0, 2), ...flow.improveDefaults])
+    ? uniqueChoices([...topics.slice(0, 2), ...flow.improveDefaults, "特にない"])
     : flow.improveDefaults;
 
   const steps = [
