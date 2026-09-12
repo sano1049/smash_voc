@@ -68,22 +68,26 @@
         </div>
 
         <div class="demo-card">
-          <form id="demo-form" class="url-form">
-            <label for="map-url">Googleマップの店舗URL</label>
-            <div class="input-row">
-              <input
-                type="url"
-                id="map-url"
-                placeholder="https://maps.google.com/?q=..."
-                required
-              />
-              <button type="submit" class="btn btn-primary">アンケートを生成</button>
-            </div>
-          </form>
+          <div class="demo-frame">
+            <div class="demo-frame-inner">
+              <form id="demo-form" class="url-form">
+                <label for="map-url">Googleマップの店舗URL</label>
+                <div class="input-row">
+                  <input
+                    type="url"
+                    id="map-url"
+                    placeholder="https://maps.google.com/?q=..."
+                    required
+                  />
+                  <button type="submit" class="btn btn-primary">アンケートを生成</button>
+                </div>
+              </form>
 
-          <div id="loading" class="loading" aria-live="polite" hidden>
-            <div class="spinner"></div>
-            <p>店舗情報を読み込んでいます…</p>
+              <div id="loading" class="loading" aria-live="polite" hidden>
+                <div class="spinner"></div>
+                <p>店舗情報を読み込んでいます…</p>
+              </div>
+            </div>
           </div>
 
           <div id="chat-app" class="chat-app" hidden>

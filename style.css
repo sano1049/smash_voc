@@ -184,9 +184,7 @@ h1 {
 }
 
 /* Cards */
-.chat-card,
-.demo-card,
-.chat-app {
+.chat-card {
   background: #fff;
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -254,7 +252,19 @@ h1 {
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
 }
 
-.demo-card {
+.demo-frame {
+  border-radius: calc(var(--radius) + 4px);
+  background: linear-gradient(135deg, #f472b6, #facc15, #4ade80, #38bdf8, #a78bfa, #f472b6);
+  background-size: 200% 200%;
+  animation: rainbowBorder 6s ease infinite;
+  padding: 4px;
+  box-shadow: var(--shadow);
+}
+
+.demo-frame-inner {
+  background: #fff;
+  border-radius: var(--radius);
+  overflow: hidden;
   padding: 32px;
 }
 
