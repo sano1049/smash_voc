@@ -471,6 +471,16 @@ function updateStepCount() {
   const remaining = CHAT_FLOW.slice(currentStep).filter((s) => s.type === "bot").length;
   stepCountEl.textContent = remaining > 0 ? `あと ${remaining} 問` : "";
 }
+function escapeHtml(str) {
+  if (str == null) return "";
+  return String(str)
+    .replace(/\u0026/g, "\u0026amp;")
+    .replace(/\u003c/g, "\u0026lt;")
+    .replace(/\u003e/g, "\u0026gt;")
+    .replace(/"/g, "\u0026quot;")
+    .replace(/'/g, "\u0026#039;");
+}
+
 const demoForm = document.getElementById("demo-form");
 const mapUrlInput = document.getElementById("map-url");
 const loading = document.getElementById("loading");
