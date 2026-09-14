@@ -50,8 +50,13 @@ const CATEGORY_RULES = [
   },
   {
     id: "hospital",
-    label: "病院・医療機関",
-    keywords: ["hospital", "doctor", "dentist", "medical_lab", "physiotherapist"],
+    label: "病院",
+    keywords: ["hospital"],
+  },
+  {
+    id: "clinic",
+    label: "クリニック",
+    keywords: ["clinic", "doctor", "dentist", "medical_lab", "physiotherapist"],
   },
   {
     id: "bank",
@@ -218,7 +223,13 @@ const CATEGORY_FLOWS = {
   },
   hospital: {
     purposeQuestion: "本日の受診目的を教えてください。",
-    purposeChoices: ["問診・検査", "処方箋", "通院・リハビリ", "健康診断"],
+    purposeChoices: ["外来受診", "入院・手術", "検査", "面会"],
+    satisfactionLabel: "受診の感想",
+    improveDefaults: ["接客", "説明のわかりやすさ", "待ち時間", "院内の清潔さ", "特にない"],
+  },
+  clinic: {
+    purposeQuestion: "本日の受診目的を教えてください。",
+    purposeChoices: ["診察・治療", "健康診断・予防接種", "通院・リハビリ", "薬の受け取り"],
     satisfactionLabel: "受診の感想",
     improveDefaults: ["接客", "説明のわかりやすさ", "待ち時間", "院内の清潔さ", "特にない"],
   },
@@ -295,6 +306,7 @@ const CATEGORY_TOPICS = {
   cafe: ["接客", "料理のクオリティ", "雰囲気", "価格", "待ち時間"],
   food: ["接客", "料理のクオリティ", "雰囲気", "価格", "待ち時間"],
   hospital: ["接客", "説明のわかりやすさ", "待ち時間", "院内の清潔さ"],
+  clinic: ["接客", "説明のわかりやすさ", "待ち時間", "院内の清潔さ"],
   bank: ["接客", "説明のわかりやすさ", "待ち時間", "店舗の利便性"],
   gym: ["接客", "設備の充実度", "混雑具合", "清潔さ"],
   hair_care: ["接客", "技術・仕上がり", "店内の雰囲気", "価格"],
