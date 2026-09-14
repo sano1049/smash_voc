@@ -1,4 +1,4 @@
-# VOC Smash デモ
+# Smash VOC LPサイト
 
 ## ローカル開発
 
@@ -6,7 +6,7 @@
 2. このフォルダに `.env` ファイルを作成：
 
 ```env
-GOOGLE_PLACES_API_KEY=あなたのAPIキー
+GOOGLE_PLACES_API_KEY=発行したAPIキー
 ```
 
 3. 依存関係をインストールして起動：
@@ -32,6 +32,7 @@ WPX など Node.js が使えないレンタルサーバーの場合は、Vercel 
 
 ## 注意
 
-- `.env` は Git に含めないでください
-- APIキーはサーバー側（`api/place.js` / `server.js`）で管理し、フロントエンドに露出しないようにしてください
+- `.env` は Git に含めない。
+- APIキーはサーバー側（`api/place.js` / `server.js`）で管理し、フロントエンドに露出しないように。
 - GoogleマップURLは「共有」でコピーした `maps.app.goo.gl` 形式、またはブラウザアドレスバーの長いURLの両方に対応しています
+- 20260912 スマホやアプリのURLのも対応した。
