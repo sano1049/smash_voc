@@ -589,7 +589,7 @@ async function renderStep(index) {
   // 以前の選択肢を無効化
   disableChoices();
 
-  updateStepCount();
+  // updateStepCount();
 
   if (step.type === "bot") {
     await wait(BOT_THINK_MS);
