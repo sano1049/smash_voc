@@ -521,6 +521,17 @@ h1 {
   cursor: not-allowed;
 }
 
+.choice.selected {
+  background: var(--blue);
+  color: #fff;
+  border-color: var(--blue);
+}
+
+.choice-next {
+  width: 100%;
+  margin-top: 8px;
+}
+
 .preview-card .chat-body {
   min-height: auto;
   max-height: none;

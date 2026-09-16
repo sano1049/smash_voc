@@ -204,102 +204,227 @@ const NEGATIVE_WORDS = {
 
 const CATEGORY_FLOWS = {
   confectionery: {
-    purposeQuestion: "本日の来店目的を教えてください。",
-    purposeChoices: ["自分用に購入", "ギフト", "テイクアウト", "友人・家族と"],
-    satisfactionLabel: "ご来店の感想",
-    improveDefaults: ["接客", "味", "見た目", "価格", "特にない"],
+    purposeChoices: ["ご自宅用", "ギフト", "誕生日・記念日", "イートイン", "その他"],
+    satisfactionQuestion: "今回ご来店いただいた<b>感想</b>をお聞かせください。",
+    satisfactionFollowUpChoices: ["接客", "味", "見た目", "価格", "その他", "特にない"],
+    secondStep: {
+      type: "review",
+      praiseText: "口コミでは「{topics}」が評価されています。\nあなたが<b>期待したポイント</b>は何でしょうか？",
+      praiseChoices: ["商品のクオリティ", "接客", "見た目", "店内環境", "その他"],
+      concernText: "口コミでは「{topics}」に関する声もあります。\nあなたが<b>気にしてほしい点</b>は何でしょうか？",
+      concernChoices: ["商品のクオリティ", "接客", "見た目", "店内環境", "その他"],
+    },
+    improveQuestion: "<b>改善してほしい点</b>はありますか？",
+    improveChoices: ["料理のクオリティ", "味", "接客", "店内環境", "雰囲気", "その他", "特にない"],
+    editorialQuestion: "このお店は「{summary}」と紹介されています。\n実際に来店して、その<b>ポイント</b>はいかがでしたか？",
   },
   cafe: {
-    purposeQuestion: "本日はどのようなシーンでお越しでしたか？",
     purposeChoices: ["作業・勉強", "ひまつぶし", "ひとりで過ごす", "待ち合わせ", "友人・家族と"],
-    satisfactionLabel: "ご来店の感想",
-    improveDefaults: ["接客", "ドリンクのクオリティ", "店内環境", "価格", "特にない"],
+    satisfactionQuestion: "今回ご利用いただいた<b>感想</b>をお聞かせください。",
+    satisfactionFollowUpChoices: ["接客", "ドリンクのクオリティ", "店内環境", "価格", "その他", "特にない"],
+    secondStep: {
+      type: "reason",
+      text: "ありがとうございます。\nこちらを<b>選んでいただいた理由</b>は何でしょうか？",
+      choices: ["口コミが良かった", "近くにあった", "雰囲気が好き", "価格が安い", "その他"],
+    },
+    improveQuestion: "<b>改善してほしい点</b>はありますか？",
+    improveChoices: ["接客", "ドリンクのクオリティ", "店内環境", "価格", "その他", "特にない"],
+    editorialQuestion: "このお店は「{summary}」と紹介されています。\n実際に来店して、その<b>ポイント</b>はいかがでしたか？",
   },
   food: {
-    purposeQuestion: "本日の来店目的を教えてください。",
-    purposeChoices: ["ランチ", "ディナー", "会食・接待", "友人・家族と"],
-    satisfactionLabel: "ご来店の感想",
-    improveDefaults: ["接客", "料理のクオリティ", "店内環境", "価格", "特にない"],
+    purposeChoices: ["昼食", "夕食", "軽食・カフェ", "会食・接待", "飲み会", "その他"],
+    satisfactionQuestion: "今回お越しいただいた<b>感想</b>をお聞かせください。",
+    satisfactionFollowUpChoices: ["接客", "料理のクオリティ", "店内環境", "価格", "その他", "特にない"],
+    secondStep: {
+      type: "review",
+      praiseText: "口コミでは「{topics}」が評価されています。\nあなたが<b>期待したポイント</b>は何でしょうか？",
+      praiseChoices: ["料理のクオリティ", "接客", "店内環境", "その他"],
+      concernText: "口コミでは「{topics}」の声もあります。\nあなたが<b>気にしてほしい点</b>は何でしょうか？",
+      concernChoices: ["料理のクオリティ", "接客", "店内環境", "その他"],
+    },
+    improveQuestion: "<b>改善してほしい点</b>はありますか？",
+    improveChoices: ["料理のクオリティ", "雰囲気", "接客", "店内環境", "その他", "特にない"],
+    editorialQuestion: "このお店は「{summary}」と紹介されています。\n実際に来店して、その<b>ポイント</b>はいかがでしたか？",
   },
   hospital: {
-    purposeQuestion: "本日の受診目的を教えてください。",
     purposeChoices: ["外来受診", "入院・手術", "検査", "面会"],
-    satisfactionLabel: "受診の感想",
-    improveDefaults: ["接客", "説明のわかりやすさ", "待ち時間", "院内の清潔さ", "特にない"],
+    satisfactionQuestion: "受診の<b>感想</b>をお聞かせください。",
+    satisfactionFollowUpChoices: ["対応", "説明のわかりやすさ", "待ち時間", "院内環境", "その他", "特にない"],
+    secondStep: {
+      type: "review",
+      concernText: "口コミでは「{topics}」に関する声もあります。\nあなたが<b>気にしてほしい点</b>は何でしょうか？",
+      concernChoices: ["対応", "説明のわかりやすさ", "待ち時間", "院内環境", "その他"],
+    },
+    improveQuestion: "<b>改善してほしい点</b>はありますか？",
+    improveChoices: ["対応", "説明のわかりやすさ", "待ち時間", "院内環境", "その他", "特にない"],
+    editorialQuestion: "このお店は「{summary}」と紹介されています。\nこの内容について、その通りだと感じましたか？",
   },
   clinic: {
-    purposeQuestion: "本日の受診目的を教えてください。",
     purposeChoices: ["診察・治療", "健康診断・予防接種", "通院・リハビリ", "薬の受け取り"],
-    satisfactionLabel: "受診の感想",
-    improveDefaults: ["接客", "説明のわかりやすさ", "待ち時間", "院内の清潔さ", "特にない"],
+    satisfactionQuestion: "受診の<b>感想</b>をお聞かせください。",
+    satisfactionFollowUpChoices: ["対応", "説明のわかりやすさ", "待ち時間", "院内環境", "その他", "特にない"],
+    secondStep: {
+      type: "review",
+      concernText: "口コミでは「{topics}」に関する声もあります。\nあなたが<b>気にしてほしい点</b>は何でしょうか？",
+      concernChoices: ["対応", "説明のわかりやすさ", "待ち時間", "院内環境", "その他"],
+    },
+    improveQuestion: "<b>改善してほしい点</b>はありますか？",
+    improveChoices: ["対応", "説明のわかりやすさ", "待ち時間", "院内環境", "その他", "特にない"],
+    editorialQuestion: "このお店は「{summary}」と紹介されています。\nこの内容について、その通りだと感じましたか？",
   },
   bank: {
-    purposeQuestion: "本日のご利用目的を教えてください。",
-    purposeChoices: ["窓口相談", "ローン・保険", "振込・手続き", "ATM利用"],
-    satisfactionLabel: "ご利用の感想",
-    improveDefaults: ["接客", "説明のわかりやすさ", "待ち時間", "店舗の利便性", "特にない"],
+    purposeChoices: ["窓口利用", "各種相談", "ATM利用", "その他"],
+    satisfactionQuestion: "今回ご利用いただいた<b>感想</b>をお聞かせください。",
+    satisfactionFollowUpChoices: ["接客・対応", "説明のわかりやすさ", "待ち時間", "店舗へのアクセス", "その他", "特にない"],
+    secondStep: {
+      type: "reason",
+      text: "ありがとうございます。\nこちらを<b>選んでいただいた理由</b>は何でしょうか？",
+      choices: ["口コミが良かった", "近くにあった", "雰囲気が好き", "その他"],
+    },
+    improveQuestion: "<b>改善してほしい点</b>はありますか？",
+    improveChoices: ["接客・対応", "説明のわかりやすさ", "待ち時間", "店舗へのアクセス", "その他", "特にない"],
+    editorialQuestion: "このお店は「{summary}」と紹介されています。\nこの内容について、その通りだと感じましたか？",
   },
   gym: {
-    purposeQuestion: "本日のご利用目的を教えてください。",
-    purposeChoices: ["トレーニング", "パーソナルレッスン", "グループレッスン", "見学・体験"],
-    satisfactionLabel: "ご利用の感想",
-    improveDefaults: ["接客", "設備の充実度", "混雑具合", "清潔さ", "特にない"],
+    purposeChoices: ["トレーニング", "パーソナルレッスン", "グループレッスン", "見学・体験", "その他"],
+    satisfactionQuestion: "今回ご利用いただいた<b>感想</b>をお聞かせください。",
+    satisfactionFollowUpChoices: ["接客・対応", "設備の充実度", "混雑具合", "清潔さ", "その他", "特にない"],
+    secondStep: {
+      type: "reason",
+      text: "ありがとうございます。\nこちらを<b>選んでいただいた理由</b>は何でしょうか？",
+      choices: ["口コミが良かった", "近くにあった", "雰囲気が好き", "価格が安い", "その他"],
+    },
+    improveQuestion: "<b>改善してほしい点</b>はありますか？",
+    improveChoices: ["接客・対応", "設備の充実度", "混雑具合", "清潔さ", "その他", "特にない"],
+    editorialQuestion: "このお店は「{summary}」と紹介されています。\nこの内容について、その通りだと感じましたか？",
   },
   hair_care: {
-    purposeQuestion: "本日のご利用目的を教えてください。",
-    purposeChoices: ["カット", "カラー・パーマ", "トリートメント", "相談"],
-    satisfactionLabel: "施術の感想",
-    improveDefaults: ["接客", "技術・仕上がり", "店内の雰囲気", "価格", "特にない"],
+    purposeChoices: ["カット", "カラー・パーマ", "トリートメント", "相談", "その他"],
+    satisfactionQuestion: "今回ご利用いただいた<b>感想</b>をお聞かせください。",
+    satisfactionFollowUpChoices: ["接客", "技術・仕上がり", "店内の雰囲気", "価格", "その他", "特にない"],
+    secondStep: {
+      type: "review",
+      praiseText: "口コミでは「{topics}」が評価されています。\nあなたが<b>期待したポイント</b>は何でしょうか？",
+      praiseChoices: ["技術・仕上がり", "接客", "雰囲気", "価格が安い", "その他"],
+      concernText: "口コミでは「{topics}」に関する声もあります。\nあなたが<b>気にしてほしい点</b>は何でしょうか？",
+      concernChoices: ["技術・仕上がり", "接客", "雰囲気", "価格が安い", "その他"],
+    },
+    improveQuestion: "<b>改善してほしい点</b>はありますか？",
+    improveChoices: ["接客", "技術・仕上がり", "店内の雰囲気", "価格", "その他", "特にない"],
+    editorialQuestion: "このお店は「{summary}」と紹介されています。\nこの内容について、その通りだと感じましたか？",
   },
   lodging: {
-    purposeQuestion: "本日のご利用目的を教えてください。",
-    purposeChoices: ["宿泊", "食事利用", "宴会・会議", "観光拠点"],
-    satisfactionLabel: "宿泊・利用の感想",
-    improveDefaults: ["接客", "客室・設備", "食事", "清潔さ", "特にない"],
+    purposeChoices: ["宿泊", "食事利用", "宴会・会議", "観光拠点", "その他"],
+    satisfactionQuestion: "今回ご利用いただいた<b>感想</b>をお聞かせください。",
+    satisfactionFollowUpChoices: ["接客", "客室・設備", "食事", "清潔さ", "価格", "その他", "特にない"],
+    secondStep: {
+      type: "review",
+      praiseText: "口コミでは「{topics}」が評価されています。\nあなたが<b>期待したポイント</b>は何でしょうか？",
+      praiseChoices: ["食事", "接客", "客室・設備", "その他"],
+      concernText: "口コミでは「{topics}」に関する声もあります。\nあなたが<b>気にしてほしい点</b>は何でしょうか？",
+      concernChoices: ["食事", "接客", "客室・設備", "その他"],
+    },
+    improveQuestion: "<b>改善してほしい点</b>はありますか？",
+    improveChoices: ["食事", "客室・設備", "接客", "清潔さ", "価格", "その他", "特にない"],
+    editorialQuestion: "このお店は「{summary}」と紹介されています。\nこの内容について、その通りだと感じましたか？",
   },
   tourist_attraction: {
-    purposeQuestion: "本日のご来場目的を教えてください。",
-    purposeChoices: ["観光", "散策", "写真撮影", "家族・友人と"],
-    satisfactionLabel: "ご来場の感想",
-    improveDefaults: ["雰囲気", "アクセス", "案内・表示", "混雑具合", "特にない"],
+    purposeChoices: ["観光", "散策", "写真撮影", "体験・アトラクション", "その他"],
+    satisfactionQuestion: "今回ご利用いただいた<b>感想</b>をお聞かせください。",
+    satisfactionFollowUpChoices: ["体験内容", "展示・設備", "雰囲気", "アクセス", "案内・表示", "混雑具合", "その他", "特にない"],
+    secondStep: {
+      type: "reason",
+      text: "ありがとうございます。\nこちらを<b>選んでいただいた理由</b>は何でしょうか？",
+      choices: ["興味・好みに合う", "口コミが良かった", "近くにあった", "雰囲気が好き", "価格が安い", "その他"],
+    },
+    improveQuestion: "<b>改善してほしい点</b>はありますか？",
+    improveChoices: ["体験内容", "展示・設備", "雰囲気", "アクセス", "案内・表示", "混雑具合", "その他", "特にない"],
+    editorialQuestion: "このお店は「{summary}」と紹介されています。\nこの内容について、その通りだと感じましたか？",
   },
   supermarket: {
-    purposeQuestion: "本日のご来店目的を教えてください。",
-    purposeChoices: ["普段の買い物", "特売品を求めて", "夕食の材料", "日用品"],
-    satisfactionLabel: "ご来店の感想",
-    improveDefaults: ["接客", "商品の品質", "品揃え", "店内の動線", "特にない"],
+    purposeChoices: ["普段の買い足し・まとめ買い", "惣菜・お弁当などの購入", "特売・セール品目当て", "ギフト・手土産の購入", "その他"],
+    satisfactionQuestion: "今回ご利用いただいた<b>感想</b>をお聞かせください。",
+    satisfactionFollowUpChoices: ["商品の品質", "品揃え", "買い物のしやすさ", "価格", "待ち時間", "その他", "特にない"],
+    secondStep: {
+      type: "review",
+      concernText: "口コミでは「{topics}」の声もあります。\nあなたが<b>気にしてほしい点</b>は何でしょうか？",
+      concernChoices: ["待ち時間", "商品の品質", "品揃え", "買い物のしやすさ", "価格", "その他"],
+    },
+    improveQuestion: "<b>改善してほしい点</b>はありますか？",
+    improveChoices: ["商品の品質", "品揃え", "買い物のしやすさ", "価格", "待ち時間", "その他", "特にない"],
+    editorialQuestion: "このお店は「{summary}」と紹介されています。\nこの内容について、その通りだと感じましたか？",
   },
   shopping_mall: {
-    purposeQuestion: "本日のご利用目的を教えてください。",
-    purposeChoices: ["ショッピング", "食事", "映画・娯楽", "家族と"],
-    satisfactionLabel: "ご利用の感想",
-    improveDefaults: ["接客", "店舗の充実度", "施設の使いやすさ", "清潔さ", "特にない"],
+    purposeChoices: ["ショッピング", "食事・カフェ", "映画・娯楽", "散策", "その他"],
+    satisfactionQuestion: "今回ご利用いただいた<b>感想</b>をお聞かせください。",
+    satisfactionFollowUpChoices: ["接客", "店舗の充実度", "施設の使いやすさ", "清潔さ", "その他"],
+    secondStep: {
+      type: "reason",
+      text: "ありがとうございます。\nこちらを<b>選んでいただいた理由</b>は何でしょうか？",
+      choices: ["施設が充実している", "行きたいお店がある", "口コミが良かった", "近くにあった", "雰囲気が好き", "その他", "特にない"],
+    },
+    improveQuestion: "<b>改善してほしい点</b>はありますか？",
+    improveChoices: ["接客", "施設の使いやすさ", "店舗の充実度", "清潔さ", "その他", "特にない"],
+    editorialQuestion: "このお店は「{summary}」と紹介されています。\nこの内容について、その通りだと感じましたか？",
   },
   convenience_store: {
-    purposeQuestion: "本日のご利用目的を教えてください。",
-    purposeChoices: ["食料品購入", "ATM・宅配", "夜食", "急ぎの買い物"],
-    satisfactionLabel: "ご利用の感想",
-    improveDefaults: ["接客", "商品の品質", "品揃え", "清潔さ", "特にない"],
+    purposeChoices: ["食事・食料品の購入", "飲料・おやつ・嗜好品の購入", "日用品・急な買い足し", "サービス利用（ATM・各種手続き等）", "休憩・トイレ利用", "その他"],
+    satisfactionQuestion: "今回ご利用いただいた<b>感想</b>をお聞かせください。",
+    satisfactionFollowUpChoices: ["接客", "品揃え", "待ち時間", "清潔さ", "その他"],
+    secondStep: {
+      type: "reason",
+      text: "ありがとうございます。\nこちらを<b>選んでいただいた理由</b>は何でしょうか？",
+      choices: ["近くにあった", "駐車場が広い", "ブランド・商品目当て", "必要なサービスに対応していた", "その他", "特にない"],
+    },
+    improveQuestion: "<b>改善してほしい点</b>はありますか？",
+    improveChoices: ["接客", "品揃え", "待ち時間", "清潔さ", "その他", "特にない"],
+    editorialQuestion: "このお店は「{summary}」と紹介されています。\nこの内容について、その通りだと感じましたか？",
   },
   retail: {
-    purposeQuestion: "本日のご来店の目的を教えてください。",
     purposeChoices: ["自分用に購入", "ギフト", "見て回る", "予約・取り置き"],
-    satisfactionLabel: "ご来店の感想",
-    improveDefaults: ["接客", "商品の品質", "品揃え", "価格", "特にない"],
+    satisfactionQuestion: "今回ご来店いただいた<b>感想</b>をお聞かせください。",
+    satisfactionFollowUpChoices: ["接客", "商品の品質", "品揃え", "価格", "その他", "特にない"],
+    secondStep: {
+      type: "reason",
+      text: "ありがとうございます。\nこちらを<b>選んでいただいた理由</b>は何でしょうか？",
+      choices: ["口コミが良かった", "近くにあった", "雰囲気が好き", "価格が安い", "その他"],
+    },
+    improveQuestion: "<b>改善してほしい点</b>はありますか？",
+    improveChoices: ["接客", "商品の品質", "品揃え", "価格", "その他", "特にない"],
+    editorialQuestion: "このお店は「{summary}」と紹介されています。\n実際に来店して、その<b>ポイント</b>はいかがでしたか？",
   },
   service: {
-    purposeQuestion: "本日のご利用の目的を教えてください。",
     purposeChoices: ["初回利用", "定期利用", "相談", "ケア・メンテナンス"],
-    satisfactionLabel: "サービスの感想",
-    improveDefaults: ["接客", "技術・仕上がり", "施設の清潔さ", "価格", "特にない"],
+    satisfactionQuestion: "今回ご利用いただいた<b>感想</b>をお聞かせください。",
+    satisfactionFollowUpChoices: ["接客", "技術・仕上がり", "施設の清潔さ", "価格", "その他", "特にない"],
+    secondStep: {
+      type: "reason",
+      text: "ありがとうございます。\nこちらを<b>選んでいただいた理由</b>は何でしょうか？",
+      choices: ["口コミが良かった", "近くにあった", "雰囲気が好き", "価格が安い", "その他"],
+    },
+    improveQuestion: "<b>改善してほしい点</b>はありますか？",
+    improveChoices: ["接客", "技術・仕上がり", "施設の清潔さ", "価格", "その他", "特にない"],
+    editorialQuestion: "このお店は「{summary}」と紹介されています。\n実際にご利用になって、その<b>ポイント</b>はいかがでしたか？",
   },
   other: {
-    purposeQuestion: "本日のご来店の目的を教えてください。",
     purposeChoices: ["初めて来店", "定期利用", "友人・家族と", "その他"],
-    satisfactionLabel: "ご利用の感想",
-    improveDefaults: ["接客", "雰囲気", "価格", "待ち時間", "特にない"],
+    satisfactionQuestion: "今回ご利用いただいた<b>感想</b>をお聞かせください。",
+    satisfactionFollowUpChoices: ["接客", "雰囲気", "価格", "待ち時間", "その他", "特にない"],
+    secondStep: {
+      type: "reason",
+      text: "ありがとうございます。\nこちらを<b>選んでいただいた理由</b>は何でしょうか？",
+      choices: ["口コミが良かった", "近くにあった", "雰囲気が好き", "価格が安い", "その他"],
+    },
+    improveQuestion: "<b>改善してほしい点</b>はありますか？",
+    improveChoices: ["接客", "雰囲気", "価格", "待ち時間", "その他", "特にない"],
+    editorialQuestion: "このお店は「{summary}」と紹介されています。\n実際にご利用になって、その<b>ポイント</b>はいかがでしたか？",
   },
 };
+
+const DEFAULT_REASON_TEXT = "ありがとうございます。\nこちらを<b>選んでいただいた理由</b>は何でしょうか？";
+const DEFAULT_REASON_CHOICES = ["口コミが良かった", "近くにあった", "雰囲気が好き", "価格が安い", "その他"];
+const DEFAULT_EDITORIAL_QUESTION = "このお店は「{summary}」と紹介されています。\n実際に来店して、その<b>ポイント</b>はいかがでしたか？";
+const FEEDBACK_CHOICES = ["テンポが良い", "わかりやすい", "普通", "もう少し短く", "もっとやってみたい"];
 
 const CATEGORY_TOPICS = {
   confectionery: ["接客", "料理のクオリティ", "雰囲気", "価格", "待ち時間"],
@@ -393,46 +518,59 @@ function buildChatFlow(info) {
   const negativeTopics = sentiment.negatives
     .filter((n) => allowedTopics.includes(n.topic))
     .map((n) => n.topic);
-  const topTopic = topics[0] || flow.improveDefaults[0];
   const isHighRated = rating != null && rating >= 4.3;
   const isLowRated = rating != null && rating <= 3.9;
   const hasPriceLevel = priceLevel != null;
   const hasEditorialSummary = !!editorialSummary;
 
+  const topicPhrase = (arr) => escapeHtml(arr.slice(0, 2).join("・"));
+
   let secondStep;
-  if (isHighRated && positiveTopics.length) {
-    const praise = positiveTopics.slice(0, 2).map(escapeHtml).join("・");
-    secondStep = {
-      text: `口コミでも「${praise}」が評価されています。\nあなたが<b>期待したポイント</b>は何でしょうか？`,
-      choices: uniqueChoices([escapeHtml(topTopic), ...flow.improveDefaults.map(escapeHtml).slice(0, 3)]),
-    };
-  } else if (isLowRated && negativeTopics.length) {
-    const concern = negativeTopics.slice(0, 2).map(escapeHtml).join("・");
-    secondStep = {
-      text: `口コミで「${concern}」の声もあります。\nお店として<b>気にしてほしい点</b>は何でしょうか？`,
-      choices: uniqueChoices([escapeHtml(topTopic), ...flow.improveDefaults.map(escapeHtml).slice(0, 3)]),
-    };
+  if (flow.secondStep.type === "review") {
+    let reviewTopics = [];
+    let isPraise = false;
+    if (flow.secondStep.praiseText && isHighRated && positiveTopics.length) {
+      reviewTopics = positiveTopics;
+      isPraise = true;
+    } else if (flow.secondStep.concernText && (negativeTopics.length || positiveTopics.length)) {
+      reviewTopics = negativeTopics.length ? negativeTopics : positiveTopics;
+    }
+    if (reviewTopics.length) {
+      const tpl = isPraise ? flow.secondStep.praiseText : flow.secondStep.concernText;
+      const choices = isPraise ? flow.secondStep.praiseChoices : flow.secondStep.concernChoices;
+      secondStep = {
+        type: "bot",
+        text: tpl.replace("{topics}", topicPhrase(reviewTopics)),
+        choices,
+        multi: true,
+      };
+    } else {
+      secondStep = {
+        type: "bot",
+        text: flow.secondStep.reasonText || DEFAULT_REASON_TEXT,
+        choices: flow.secondStep.reasonChoices || DEFAULT_REASON_CHOICES,
+        multi: true,
+      };
+    }
   } else {
     secondStep = {
-      text: "ありがとうございます。\nお店を<b>選んでいただいた理由</b>は何でしょうか？",
-      choices: ["口コミが良かった", "近くにあった", "雰囲気が好き", "価格が安い"],
+      type: "bot",
+      text: flow.secondStep.text,
+      choices: flow.secondStep.choices,
+      multi: true,
     };
   }
-
-  const improveChoices = topics.length
-    ? uniqueChoices([...topics.slice(0, 2).map(escapeHtml), ...flow.improveDefaults.map(escapeHtml), "特にない"])
-    : flow.improveDefaults;
 
   const steps = [
     {
       type: "bot",
-      text: `<b>${escapeHtml(name)}</b>へようこそ！\n本日はどのような<b>来店目的</b>でお越しでしたか？`,
+      text: `<b>${escapeHtml(name)}</b>へお越しいただき、ありがとうございました！今回の<b>目的</b>を教えてください。`,
       choices: flow.purposeChoices,
     },
-    { type: "bot", ...secondStep },
+    secondStep,
     {
       type: "bot",
-      text: `${escapeHtml(flow.satisfactionLabel)}を<b>お聞かせください</b>。`,
+      text: flow.satisfactionQuestion,
       choices: ["とても満足", "まあまあ満足", "やや不満", "かなり不満"],
     },
   ];
@@ -447,9 +585,10 @@ function buildChatFlow(info) {
   }
 
   if (hasEditorialSummary) {
+    const editorialQuestion = flow.editorialQuestion || DEFAULT_EDITORIAL_QUESTION;
     steps.push({
       type: "bot",
-      text: `このお店は「${escapeHtml(editorialSummary)}」と紹介されています。\n実際に来店して、その<b>ポイント</b>はいかがでしたか？`,
+      text: editorialQuestion.replace("{summary}", escapeHtml(editorialSummary)),
       choices: ["強く感じた", "まあまあ感じた", "あまり感じられなかった", "特に気にしていない"],
     });
   }
@@ -457,13 +596,16 @@ function buildChatFlow(info) {
   steps.push(
     {
       type: "bot",
-      text: "改善して<b>ほしい点</b>はありますか？（任意）",
-      choices: improveChoices,
+      text: flow.improveQuestion || "<b>改善してほしい点</b>はありますか？",
+      choices: flow.improveChoices,
+      multi: true,
+      skipIfDissatisfied: true,
     },
     {
       type: "bot",
       text: "このアンケートはいかがでしたか？",
-      choices: ["テンポが良い", "普通", "もう少し短く", "分かりやすい"],
+      choices: FEEDBACK_CHOICES,
+      multi: true,
     },
     {
       type: "final",
@@ -517,8 +659,13 @@ const MOOD_CHOICES = {
 };
 
 function moodForChoice(label) {
-  if (MOOD_CHOICES.sad.includes(label)) return "sad";
+  const labels = Array.isArray(label) ? label : [label];
+  if (labels.some((l) => MOOD_CHOICES.sad.includes(l))) return "sad";
   return "happy";
+}
+
+function isDissatisfied() {
+  return ["やや不満", "かなり不満"].includes(lastSatisfaction);
 }
 
 // ------------------------------------------------------------
@@ -589,13 +736,18 @@ async function renderStep(index) {
   // 以前の選択肢を無効化
   disableChoices();
 
+  if (step.skipIfDissatisfied && isDissatisfied()) {
+    renderStep(index + 1);
+    return;
+  }
+
   // updateStepCount();
 
   if (step.type === "bot") {
     await wait(BOT_THINK_MS);
     addMessage("bot", interpolate(step.text, storeInfo), botMood);
     await wait(STEP_PAUSE_MS);
-    renderChoices(step.choices);
+    renderChoices(step.choices, step.multi);
     scrollToBottom();
   } else if (step.type === "final") {
     await wait(BOT_THINK_MS);
@@ -656,26 +808,67 @@ function insertSatisfactionDeepDive(atIndex) {
   if (!storeInfo) return;
   const category = detectCategory(storeInfo.types || []);
   const flow = CATEGORY_FLOWS[category];
-  const choices = flow.improveDefaults;
+  const choices = flow.satisfactionFollowUpChoices;
 
   const isPositive = ["とても満足", "まあまあ満足"].includes(lastSatisfaction);
   const text = isPositive
-    ? "満足いただけたとのこと、ありがとうございます。\n特に<b>良かったポイント</b>を教えてください。"
-    : "ご不便をおかけして申し訳ございません。\n特に<b>改善してほしい点</b>を教えてください。";
+    ? "ご満足いただけたとのこと、ありがとうございます。\n<b>特に良かった点</b>を教えてください。"
+    : "この度はご期待に添えず、申し訳ございません。\n特に<b>気になった点</b>を教えていただけますでしょうか。";
 
-  CHAT_FLOW.splice(atIndex, 0, { type: "bot", text, choices });
+  CHAT_FLOW.splice(atIndex, 0, { type: "bot", text, choices, multi: true });
 }
 
-function renderChoices(choices) {
+function renderChoices(choices, multi = false) {
   chatChoices.innerHTML = "";
+
+  if (!multi) {
+    choices.forEach((label) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "choice";
+      btn.textContent = label;
+      btn.addEventListener("click", () => handleChoice(label));
+      chatChoices.appendChild(btn);
+    });
+    return;
+  }
+
+  const selected = new Set();
+
   choices.forEach((label) => {
     const btn = document.createElement("button");
     btn.type = "button";
     btn.className = "choice";
     btn.textContent = label;
-    btn.addEventListener("click", () => handleChoice(label));
+    btn.addEventListener("click", () => {
+      if (selected.has(label)) {
+        selected.delete(label);
+        btn.classList.remove("selected");
+      } else {
+        selected.add(label);
+        btn.classList.add("selected");
+      }
+      nextBtn.disabled = selected.size === 0;
+    });
     chatChoices.appendChild(btn);
   });
+
+  const nextBtn = document.createElement("button");
+  nextBtn.type = "button";
+  nextBtn.className = "btn btn-primary choice-next";
+  nextBtn.textContent = "次へ";
+  nextBtn.disabled = true;
+  nextBtn.addEventListener("click", () => handleMultiChoice(Array.from(selected)));
+  chatChoices.appendChild(nextBtn);
+}
+
+async function handleMultiChoice(labels) {
+  addMessage("user", labels.join("、"));
+  botMood = moodForChoice(labels);
+
+  chatChoices.innerHTML = "";
+  await wait(STEP_PAUSE_MS);
+  renderStep(currentStep + 1);
 }
 
 function disableChoices() {
