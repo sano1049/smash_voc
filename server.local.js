@@ -32,7 +32,7 @@ function extractPlaceIdFromData(dataParam) {
 }
 
 const FIELD_MASK =
-  "places.id,places.displayName,places.rating,places.reviews,places.types,places.priceLevel,places.userRatingCount,places.editorialSummary";
+  "places.id,places.displayName,places.rating,places.reviews,places.types,places.primaryType,places.priceLevel,places.userRatingCount,places.editorialSummary";
 
 async function resolveByTextQuery(textQuery, locationBias = null) {
   const body = {
@@ -204,7 +204,7 @@ app.get("/api/place", async (req, res) => {
     } else {
       const apiUrl = `https://places.googleapis.com/v1/places/${encodeURIComponent(
         placeId
-      )}?fields=id,displayName,rating,reviews,types,priceLevel,userRatingCount,editorialSummary&languageCode=ja&key=${GOOGLE_API_KEY}`;
+      )}?fields=id,displayName,rating,reviews,types,primaryType,priceLevel,userRatingCount,editorialSummary&languageCode=ja&key=${GOOGLE_API_KEY}`;
 
       const response = await fetch(apiUrl);
       data = await response.json();
@@ -235,6 +235,7 @@ app.get("/api/place", async (req, res) => {
       rating: data.rating ?? null,
       placeId: placeIdUsed,
       types: data.types || [],
+      primaryType: data.primaryType || null,
       priceLevel: priceLevelMap[data.priceLevel] ?? null,
       userRatingCount: data.userRatingCount ?? null,
       editorialSummary: data.editorialSummary?.text || null,
