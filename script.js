@@ -110,10 +110,19 @@ const CATEGORY_RULES = [
   },
 ];
 
-function detectCategory(types) {
-  if (!types || !types.length) return "other";
+function detectCategory({ types, primaryType } = {}) {
+  const typeList = types || [];
+  // primaryType があれば最優先で判定
+  if (primaryType) {
+    for (const rule of CATEGORY_RULES) {
+      if (rule.keywords.includes(primaryType)) {
+        return rule.id;
+      }
+    }
+  }
+  if (!typeList.length) return "other";
   for (const rule of CATEGORY_RULES) {
-    if (types.some((t) => rule.keywords.includes(t))) {
+    if (typeList.some((t) => rule.keywords.includes(t))) {
       return rule.id;
     }
   }
@@ -506,8 +515,8 @@ function priceLevelChoices(priceLevel) {
 }
 
 function buildChatFlow(info) {
-  const { name, rating, reviews, types, priceLevel, editorialSummary } = info;
-  const category = detectCategory(types || []);
+  const { name, rating, reviews, types, primaryType, priceLevel, editorialSummary } = info;
+  const category = detectCategory({ types, primaryType });
   const flow = CATEGORY_FLOWS[category];
   const allowedTopics = CATEGORY_TOPICS[category] || Object.keys(TOPIC_KEYWORDS);
   const topics = detectTopics(reviews || []).filter((t) => allowedTopics.includes(t));
@@ -713,7 +722,7 @@ function setLoading(isLoading) {
 function initChat(info) {
   storeInfo = info;
   CHAT_FLOW = buildChatFlow(info);
-  const category = detectCategory(info.types || []);
+  const category = detectCategory({ types: info.types, primaryType: info.primaryType });
   storeNameEl.textContent = info.name;
   storeCategoryEl.textContent = CATEGORY_LABELS[category] || "その他";
   storeRatingEl.textContent = info.rating != null ? `★ ${info.rating.toFixed(1)}` : "★ -";
@@ -806,7 +815,7 @@ function isSatisfactionChoice(label) {
 
 function insertSatisfactionDeepDive(atIndex) {
   if (!storeInfo) return;
-  const category = detectCategory(storeInfo.types || []);
+  const category = detectCategory({ types: storeInfo.types, primaryType: storeInfo.primaryType });
   const flow = CATEGORY_FLOWS[category];
   const choices = flow.satisfactionFollowUpChoices;
 

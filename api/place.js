@@ -45,7 +45,7 @@ function extractPlaceIdFromUrl(url) {
 }
 
 const EXTRA_FIELDS = "priceLevel,userRatingCount,editorialSummary";
-const FIELD_MASK = `places.id,places.displayName,places.rating,places.reviews,places.types,places.${EXTRA_FIELDS.replace(/,/g, ",places.")}`;
+const FIELD_MASK = `places.id,places.displayName,places.rating,places.reviews,places.types,places.primaryType,places.${EXTRA_FIELDS.replace(/,/g, ",places.")}`;
 
 async function resolveByTextQuery(textQuery, locationBias = null) {
   const body = {
@@ -132,7 +132,7 @@ async function expandAndResolveShortUrl(url) {
 async function fetchPlaceDetails(placeId) {
   const apiUrl = `https://places.googleapis.com/v1/places/${encodeURIComponent(
     placeId
-  )}?fields=id,displayName,rating,reviews,types,${EXTRA_FIELDS}&languageCode=ja&key=${GOOGLE_API_KEY}`;
+  )}?fields=id,displayName,rating,reviews,types,primaryType,${EXTRA_FIELDS}&languageCode=ja&key=${GOOGLE_API_KEY}`;
 
   const response = await fetch(apiUrl);
   const data = await response.json();
@@ -160,6 +160,7 @@ function formatResponse(data, placeIdUsed) {
     rating: data.rating ?? null,
     placeId: placeIdUsed,
     types: data.types || [],
+    primaryType: data.primaryType || null,
     priceLevel: formatPriceLevel(data.priceLevel),
     userRatingCount: data.userRatingCount ?? null,
     editorialSummary: data.editorialSummary?.text || null,
