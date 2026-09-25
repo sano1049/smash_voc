@@ -44,11 +44,6 @@ const CATEGORY_RULES = [
     keywords: ["cafe", "coffee_shop"],
   },
   {
-    id: "food",
-    label: "飲食",
-    keywords: ["restaurant", "bar", "meal_takeaway", "meal_delivery", "food"],
-  },
-  {
     id: "hospital",
     label: "病院",
     keywords: ["hospital"],
@@ -97,6 +92,11 @@ const CATEGORY_RULES = [
     id: "convenience_store",
     label: "コンビニエンスストア",
     keywords: ["convenience_store"],
+  },
+  {
+    id: "food",
+    label: "飲食",
+    keywords: ["restaurant", "bar", "meal_takeaway", "meal_delivery", "food"],
   },
   {
     id: "retail",
@@ -609,7 +609,7 @@ function buildChatFlow(info) {
     },
     {
       type: "final",
-      text: "実際の Smash VOCでは、\nさらに便利で面白いアンケートが簡単に作れます。",
+      text: "Smash VOCでは、GoogleマップURL以外にも、簡単なやりとりでアンケートが作成できます。\n回答者一人ひとりと「対話」するアンケート、あなたのお店でも取り入れてみませんか？",
     }
   );
 
@@ -887,7 +887,7 @@ function addFinalCard(text) {
   const cta = document.createElement("a");
   cta.href = "#";
   cta.className = "btn btn-primary";
-  cta.textContent = "無料で試す";
+  cta.textContent = "30日間無料で試す";
   cta.addEventListener("click", (e) => {
     e.preventDefault();
     alert("ここから本登録フローへ繋がります（デモ）");
