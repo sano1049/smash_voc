@@ -619,6 +619,7 @@ function buildChatFlow(info) {
     {
       type: "final",
       text: "Smash VOCでは、GoogleマップURL以外にも、簡単なやりとりでアンケートが作成できます。\n回答者一人ひとりと「対話」するアンケート、あなたのお店でも取り入れてみませんか？",
+        text: "ここまでは、ほんのさわりです。\n製品版では、AIがお客様の自由な言葉まで理解して聞き返し、集まった声から「なぜ」と次の一手がわかるレポートをご覧いただけます。\nクレジットカード登録不要",
     }
   );
 
@@ -896,7 +897,7 @@ function addFinalCard(text) {
   const cta = document.createElement("a");
   cta.href = "#";
   cta.className = "btn btn-primary";
-  cta.textContent = "30日間無料で試す";
+  cta.textContent = "30日間無料で始める";
   cta.addEventListener("click", (e) => {
     e.preventDefault();
     alert("ここから本登録フローへ繋がります（デモ）");
