@@ -3,159 +3,604 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Smash　VOC | 新しいVOCアンケートの体験を！</title>
+  <title>Smash VOC｜対話型AIアンケート</title>
+  <meta name="description" content="満足も、不満も、平均するとただの数字。Smash VOCは、AIが回答に合わせて聞き返す対話型アンケートです。今のアンケートと置き換えるだけで、「集計して終わり」から「次の一手がわかる」へ。30日間無料・クレジットカード登録不要。" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Smash VOC" />
+  <meta property="og:title" content="Smash VOC｜対話型AIアンケート" />
+  <meta property="og:description" content="今のアンケートと置き換えるだけ。「集計して終わり」から、「次の一手がわかる」へ。30日間無料・クレジットカード登録不要。" />
+  <meta property="og:url" content="https://voc.smash.ne.jp/" />
+  <meta property="og:image" content="https://voc.smash.ne.jp/images/lp/ogp.png" />
+  <link rel="canonical" href="https://voc.smash.ne.jp/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content="#ffffff" />
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-NVX2ZX2Z');</script>
+  <!-- End Google Tag Manager -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=2" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=3" />
 </head>
 <body>
-  <header class="site-header">
-    <div class="container nav">
-      <a href="#" class="logo">Smash VOC</a>
-      <nav class="nav-links">
-        <a href="#demo">デモ</a>
-        <a href="#features">特徴</a>
-        <a href="#pricing">料金</a>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NVX2ZX2Z" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <!-- ========== ヘッダー ========== -->
+  <header class="hd" id="top">
+    <div class="hd__in">
+      <a class="hd__logo" href="https://smash.ne.jp/"><img src="images/lp/logo.svg" alt="Smash" width="113" height="47" /></a>
+      <nav class="hd__nav" aria-label="サイトメニュー">
+        <ul>
+          <li class="hd__has-sub">
+            <span tabindex="0">ソリューション</span>
+            <ul class="hd__sub">
+              <li><a href="https://smash.ne.jp/chatbot">解約受付チャットボット</a></li>
+              <li><a href="https://smash.ne.jp/chatpage">チャットページ</a></li>
+            </ul>
+          </li>
+          <li><a href="https://smash.ne.jp/cb_function/">機能説明</a></li>
+          <li><a href="https://smash.ne.jp/casestudy/">導入事例</a></li>
+          <li><a href="https://smash.ne.jp/news/">お知らせ</a></li>
+          <li><a href="https://note.com/smash_retention" target="_blank" rel="noopener">note</a></li>
+          <li><a href="https://smash.ne.jp/about">会社概要</a></li>
+        </ul>
       </nav>
-      <a href="#demo" class="btn btn-small">無料で試す</a>
+      <div class="hd__cta">
+        <a class="btn btn--line btn--sm hd__try js-try" data-loc="header" href="#demo">まず体験してみる<span class="btn__arw" aria-hidden="true">＞</span></a>
+        <a class="btn btn--pink btn--sm js-signup" data-loc="header" href="https://smash.buzz/sign-up"><span class="btn__num">30</span>日間無料で始める<span class="btn__arw" aria-hidden="true">＞</span></a>
+      </div>
+      <button class="hd__burger" type="button" aria-expanded="false" aria-controls="spmenu" aria-label="メニューを開く"><span></span><span></span><span></span></button>
+    </div>
+    <div class="spmenu" id="spmenu" hidden>
+      <ul>
+        <li><span class="spmenu__label">ソリューション</span>
+          <ul>
+            <li><a href="https://smash.ne.jp/chatbot">解約受付チャットボット</a></li>
+            <li><a href="https://smash.ne.jp/chatpage">チャットページ</a></li>
+          </ul>
+        </li>
+        <li><a href="https://smash.ne.jp/cb_function/">機能説明</a></li>
+        <li><a href="https://smash.ne.jp/casestudy/">導入事例</a></li>
+        <li><a href="https://smash.ne.jp/news/">お知らせ</a></li>
+        <li><a href="https://note.com/smash_retention" target="_blank" rel="noopener">note</a></li>
+        <li><a href="https://smash.ne.jp/about">会社概要</a></li>
+      </ul>
+      <div class="spmenu__cta">
+        <a class="btn btn--pink js-signup" data-loc="spmenu" href="https://smash.buzz/sign-up"><span class="btn__num">30</span>日間無料で始める<span class="btn__arw" aria-hidden="true">＞</span></a>
+        <a class="btn btn--line js-try" data-loc="spmenu" href="#demo">まず体験してみる<span class="btn__arw" aria-hidden="true">＞</span></a>
+      </div>
     </div>
   </header>
 
   <main>
-    <section class="hero">
-      <div class="container hero-inner">
-        <div class="hero-text">
-          <span class="badge">質問に答えるだけで深掘りしたアンケートを自動生成</span>
-          <h2>このサイトでは口コミと店舗特性から、<br />最適なアンケートの自動生成を体験してください！</h2>
-          <p class="lead">
-            Smash VOC は、AIを使ったチャット形式のアンケートがあっという間にできます。<br class="hidden-sp" />
-            回答で表情や次の質問が変化し、自由記入の内容も理解し、GoogleMAPの口コミ誘導やインセンティブ提案もAIが行います。
-          </p>
-          <div class="hero-actions">
-            <a href="#demo" class="btn btn-primary">デモを試す</a>
-            <a href="#features" class="btn btn-secondary">詳しく見る</a>
+    <!-- ========== FV ========== -->
+    <section class="fv" id="fv">
+      <div class="inner fv__in">
+        <div class="fv__txt">
+          <p class="fv__label">対話型AIアンケート&nbsp;&nbsp;Smash VOC</p>
+          <h1 class="fv__ttl">
+            <span class="fv__ttl-sub">満足も、不満も、平均するとただの数字。</span>
+            <span class="fv__ttl-main"><span class="mk">その理由<small>を</small></span><br /><span class="mk">改善策にしてお届けします。</span></span>
+          </h1>
+          <p class="fv__lead">今のアンケートと置き換えるだけ。<br />「集計して終わり」から、<br class="sp-xs" />「次の一手がわかる」へ。</p>
+        </div>
+        <div class="fv__visual">
+          <picture>
+            <source media="(max-width: 767px)" srcset="images/lp/sp_fv.png" width="640" height="1211" />
+            <img src="images/lp/pc_fv.png" width="1112" height="934" alt="Smash VOCのチャット画面。「本日のお食事はいかがでしたか？」に「普通」と答えると、AIが「ひとつ変えるとしたら、どこですか？」と聞き返す。集まった声から「店内の寒さに関する声が急増（先週の3倍）。提案：入口近くの席の空調を見直す」と通知が届く。" />
+          </picture>
+          <p class="fv__note fv__note--1" aria-hidden="true">会話するように、<br />回答に合わせて<br />次の質問が変わる！</p>
+          <p class="fv__note fv__note--2" aria-hidden="true">さらに、集まった<br />声から改善策まで。</p>
+        </div>
+        <div class="fv__cta">
+          <div class="cta-main">
+            <a class="btn btn--pink btn--lg btn--spark js-signup" data-loc="fv" href="https://smash.buzz/sign-up"><span class="btn__num">30</span>日間無料で始める<span class="btn__arw" aria-hidden="true">＞</span></a>
+            <p class="cta-note">クレジットカード登録不要</p>
+          </div>
+          <a class="btn btn--line btn--md js-try" data-loc="fv" href="#demo">まず体験してみる<span class="btn__arw" aria-hidden="true">＞</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 課題 ========== -->
+    <section class="problem" id="problem">
+      <div class="inner">
+        <h2 class="problem__ttl">
+          <span class="problem__ttl-sub"><em>答える側</em>も、<em>集める側</em>も、</span>
+          <span class="problem__ttl-main"><span class="mk">実はアンケートに<br class="sp" />困っている。</span></span>
+        </h2>
+        <div class="problem__body">
+          <div class="problem__img">
+            <picture>
+              <source media="(max-width: 767px)" srcset="images/lp/sp_old_survey.png" width="599" height="572" />
+              <img src="images/lp/pc_old_survey.png" width="1459" height="552" loading="lazy" alt="従来のアンケートの例。Q1〜Q4まで選択式の質問が続き、答える人は「あと何問…？」「まだ終わらない…」と感じている。回答を集めて終了。" />
+            </picture>
+          </div>
+          <ul class="problem__list">
+            <li>
+              <h3>「どうせ届かない」と思われている</h3>
+              <p>顧客の本音より<span class="pk">「早く終わらせる」<br class="pc" />ための回答</span>が集まる</p>
+            </li>
+            <li>
+              <h3>表面的なデータ</h3>
+              <p>選択肢以上の<span class="pk">「なぜ？」がわからない</span></p>
+            </li>
+            <li>
+              <h3>集計して、終わり</h3>
+              <p><span class="pk">何をどう改善すべきかわからない</span>まま、<br />数字だけが報告される</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 解決 ========== -->
+    <section class="solution" id="solution">
+      <div class="bridge">
+        <p>だから、アンケートの形を変えました。</p>
+        <img src="images/lp/deco_chevrons.svg" width="35" height="34" alt="" />
+      </div>
+      <div class="inner">
+        <h2 class="ttl-xl ttl-deco"><span class="mk">アンケートを、<br class="sp" />インタビューに。</span></h2>
+        <p class="solution__lead">AIが回答に合わせて、その場で聞き返します。</p>
+        <div class="solution__body">
+          <div class="solution__phone">
+            <picture>
+              <source media="(max-width: 767px)" srcset="images/lp/sp_solution_phone.png" width="489" height="858" />
+              <img src="images/lp/pc_solution_phone.png" width="716" height="1118" loading="lazy" alt="AIとの対話画面。「サービスはいかがでしたか？」に「満足できなかった」と答えると、AIが「満足できなかったところを詳しくお聞かせいただけますか？」と聞き返す。" />
+            </picture>
+          </div>
+          <div class="solution__cards">
+            <article class="side">
+              <h3 class="side__tag">答える側</h3>
+              <img class="side__bulb" src="images/lp/icon_bulb.svg" width="50" height="50" alt="" />
+              <p class="side__head"><span class="mk-s">「聞いてもらえた」</span><br class="pc" />と感じる。</p>
+              <img class="side__arw" src="images/lp/icon_arrow_down.svg" width="37" height="41" alt="" />
+              <p class="side__txt">答えるたびに、<br class="pc" />自分の言葉<br class="sp" />に反応が<br class="pc" />返ってくる。<br />だから、<strong class="mk-s">本音が出る。</strong></p>
+            </article>
+            <article class="side">
+              <h3 class="side__tag">集める側</h3>
+              <img class="side__bulb" src="images/lp/icon_bulb.svg" width="50" height="50" alt="" />
+              <p class="side__head"><span class="mk-s">「なぜ」</span><br class="pc" />までわかる。</p>
+              <img class="side__arw" src="images/lp/icon_arrow_down.svg" width="37" height="41" alt="" />
+              <p class="side__txt">「普通」「不満」の<br class="pc" />理由まで<br class="sp" />その場で<br class="pc" />深掘りするから<br /><strong class="mk-s">改善策が見えてくる。</strong></p>
+            </article>
           </div>
         </div>
-        <div class="hero-visual">
-          <div class="chat-card preview-card">
+      </div>
+    </section>
+
+    <!-- ========== 比較表 ========== -->
+    <section class="compare" id="compare">
+      <div class="inner">
+        <h2 class="ttl-2line ttl-deco">
+          <span class="ttl-2line__sub">従来型アンケートとの</span>
+          <span class="ttl-2line__main"><span class="mk">決定的な違い</span></span>
+        </h2>
+        <div class="cmp" role="table" aria-label="従来のアンケートとSmash VOCの比較">
+          <div class="cmp__head" role="row">
+            <span role="columnheader" class="cmp__h cmp__h--blank"></span>
+            <span role="columnheader" class="cmp__h cmp__h--old"><b>従来のアンケート</b></span>
+            <span role="columnheader" class="cmp__h cmp__h--new"><b>Smash VOC</b></span>
+          </div>
+          <div class="cmp__row" role="row"><span role="rowheader" class="cmp__label">質問構造</span><span role="cell" class="cmp__old">全員に<br class="sp" />同じ質問</span><span role="cell" class="cmp__new">回答によって<br class="sp" />質問が変化</span></div>
+          <div class="cmp__row" role="row"><span role="rowheader" class="cmp__label">回答形式</span><span role="cell" class="cmp__old">選択式中心</span><span role="cell" class="cmp__new">自由回答も<br class="sp" />AIが深く理解</span></div>
+          <div class="cmp__row" role="row"><span role="rowheader" class="cmp__label">データの質</span><span role="cell" class="cmp__old">表面的な<br class="sp" />回答に<br class="sp" />なりやすい</span><span role="cell" class="cmp__new">理由や背景<br class="sp" />まで深掘り</span></div>
+          <div class="cmp__row" role="row"><span role="rowheader" class="cmp__label">事後処理</span><span role="cell" class="cmp__old">回答を<br class="sp" />集めて終了</span><span role="cell" class="cmp__new">口コミ投稿など、<br class="sp" />次のアクション<br class="sp" />まで誘導</span></div>
+          <div class="cmp__row" role="row"><span role="rowheader" class="cmp__label">分析体制</span><span role="cell" class="cmp__old">人が手作業<br class="sp" />で集計・分析</span><span role="cell" class="cmp__new">AIが重要な<br class="sp" />声を自動抽出</span></div>
+          <div class="cmp__row" role="row"><span role="rowheader" class="cmp__label">レポート</span><span role="cell" class="cmp__old">グラフを<br class="sp" />見るだけ</span><span role="cell" class="cmp__new">改善策が<br class="sp" />わかる</span></div>
+          <div class="cmp__row" role="row"><span role="rowheader" class="cmp__label">導入<br class="sp" />ハードル</span><span role="cell" class="cmp__old">複雑な<br class="sp" />アンケート<br class="sp" />設計が必要</span><span role="cell" class="cmp__new">AIとの会話で<br class="sp" />簡単作成</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 体験版 ========== -->
+    <section class="demo" id="demo">
+      <div class="inner">
+        <p class="pill pill--pink">簡易デモ</p>
+        <h2 class="ttl-l"><span class="mk">まずは、<br class="sp" />体験してみてください。</span></h2>
+        <p class="demo__lead">お店のGoogleマップURLを入れるだけで、<br class="sp" />あなたのお店向けのアンケートが<br class="sp" />その場でできあがります。</p>
+        <p class="pill pill--cream">体験のポイント</p>
+        <ul class="demo__points">
+          <li>URLを入れるだけで、アンケートができる</li>
+          <li>お店の情報がちゃんと反映されている</li>
+          <li>「満足」と「不満」でその後の聞き返しが変わる</li>
+        </ul>
+
+        <div class="demo__box">
+          <form id="demo-form" class="url-form">
+            <label for="map-url">Googleマップの店舗URL</label>
+            <div class="input-row">
+              <input type="url" id="map-url" inputmode="url" autocomplete="off" placeholder="https://maps.app.goo.gl/..." required />
+              <button type="submit" class="btn btn--blue">アンケートを生成</button>
+            </div>
+          </form>
+          <p class="demo__sample">URLがない方<span class="demo__sample-arw" aria-hidden="true"></span><a href="#demo" id="sample-link" class="js-sample">サンプル店舗で体験する</a></p>
+          <details class="demo__howto">
+            <summary>GoogleマップのURLの取り方</summary>
+            <p>Googleマップでお店を開く →「共有」→「リンクをコピー」</p>
+          </details>
+          <div id="loading" class="loading" aria-live="polite" hidden>
+            <div class="spinner"></div>
+            <p>店舗情報を読み込んでいます…</p>
+          </div>
+        </div>
+        <p class="demo__note">※製品版では、GoogleマップのURLがなくても、<br class="sp" />AIとの会話でアンケートが作れます。</p>
+
+        <div id="chat-app" class="chat-app" hidden>
+          <div class="chat-app-inner">
             <div class="chat-header">
               <div class="store-info">
-                <strong>カフェ ブルー</strong>
-                <span class="rating">★ 4.2</span>
-              </div>
-            </div>
-            <div class="chat-body">
-              <div class="message bot">
-                <p>カフェ ブルーへお越しいただき、ありがとうございました！<br />今回の目的を教えてください。</p>
-              </div>
-              <div class="choices">
-                <button class="choice">作業・勉強</button>
-                <button class="choice">ひまつぶし</button>
-                <button class="choice">ひとりで過ごす</button>
-                <button class="choice">待ち合わせ</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="demo" class="demo-section">
-      <div class="container narrow">
-        <div class="section-head">
-          <h2>Smash VOCの一部を体験！</h2>
-          <p>Googleマップの店舗URLを入力すると、Smash VOC がアンケートを自動生成します。</p>
-                    <p>実際のSmash VOCは、もっと緻密なアンケートが出来上がります。</p>
-        </div>
-
-        <div class="demo-card">
-          <div class="demo-frame">
-            <div class="demo-frame-inner">
-              <form id="demo-form" class="url-form">
-                <label for="map-url">Googleマップの店舗URL</label>
-                <div class="input-row">
-                  <input
-                    type="url"
-                    id="map-url"
-                    placeholder="https://maps.google.com/?q=..."
-                    required
-                  />
-                  <button type="submit" class="btn btn-primary">アンケートを生成</button>
+                <div class="store-name-row">
+                  <strong id="store-name">--</strong>
+                  <span id="store-category" class="store-category"></span>
                 </div>
-              </form>
-
-              <div id="loading" class="loading" aria-live="polite" hidden>
-                <div class="spinner"></div>
-                <p>店舗情報を読み込んでいます…</p>
-              </div>
-            </div>
-          </div>
-
-          <div id="chat-app" class="chat-app" hidden>
-            <div class="chat-app-inner">
-              <div class="chat-header">
-                <div class="store-info">
-                  <div class="store-name-row">
-                    <strong id="store-name">--</strong>
-                    <span id="store-category" class="store-category"></span>
-                  </div>
-                  <div class="store-meta">
-                    <span id="store-rating" class="rating">★ --</span>
-                    <span id="store-price-level" class="price-level"></span>
-                    <span class="status">アンケート中</span>
-                  </div>
+                <div class="store-meta">
+                  <span id="store-rating" class="rating">★ --</span>
+                  <span id="store-price-level" class="price-level"></span>
+                  <span class="status">アンケート中</span>
                 </div>
-                <span id="step-count" class="step-count" hidden></span>
               </div>
-              <div id="chat-body" class="chat-body"></div>
-              <div id="chat-choices" class="chat-choices"></div>
+              <span id="step-count" class="step-count" hidden></span>
+            </div>
+            <div id="chat-body" class="chat-body"></div>
+            <div id="chat-choices" class="chat-choices"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== できること ========== -->
+    <section class="feat" id="features">
+      <div class="inner feat__intro">
+        <div class="feat__intro-txt">
+          <p class="pill pill--yellow">What Smash VOC Can Do</p>
+          <h2 class="ttl-xl">聞き取りから、<br /><span class="mk">次の一手まで。</span></h2>
+        </div>
+        <div class="feat__cycle">
+          <picture>
+            <source media="(max-width: 767px)" srcset="images/lp/sp_cycle.png" width="623" height="498" />
+            <img src="images/lp/pc_cycle.png" width="1008" height="806" loading="lazy" alt="01 聞く：AIが一人ひとりに合わせて最適な質問をする。02 理解する：回答の感情・意味・重要度をAIが瞬時に判断する。03 動く：口コミ促進、業務改善、商品開発、緊急対応など次のアクションへ直結させる。" />
+          </picture>
+        </div>
+      </div>
+
+      <!-- 01 聞く -->
+      <div class="fpanel fpanel--listen" id="f-listen">
+        <nav class="ftabs" aria-label="できることの目次">
+          <a class="ftab ftab--listen" href="#f-listen" aria-current="true"><img src="images/lp/icon_tab_listen.svg" width="41" height="31" alt="" />Listen</a>
+          <a class="ftab ftab--understand" href="#f-understand"><img src="images/lp/icon_tab_understand.svg" width="41" height="41" alt="" />Understand</a>
+          <a class="ftab ftab--act" href="#f-act"><img src="images/lp/icon_tab_act.svg" width="35" height="35" alt="" />Act</a>
+        </nav>
+        <div class="fpanel__bg">
+          <div class="fpanel__card">
+            <h3 class="fpanel__ttl"><span class="fpanel__num">01</span>聞く</h3>
+            <p class="fpanel__lead">プロのインタビュアーのように、<br class="sp" /><span class="pk">一人ひとりに違う質問</span>を。</p>
+            <div class="fpanel__fig fpanel__fig--listen">
+              <picture>
+                <source media="(max-width: 767px)" srcset="images/lp/sp_listen.png" width="549" height="512" />
+                <img src="images/lp/pc_listen.png" width="1858" height="514" loading="lazy" alt="Q1「料理はいかがでしたか？」の回答が「すごくおいしかった」なら「特に気に入ったメニューは？」、「普通だった」なら「もう少し改善して欲しい点は？」、「提供が遅かった」なら「どのくらい待ちましたか？」と、Q2が回答ごとに変わる。さらに深掘りしてQ3「スタッフから説明はありましたか？」と続く。" />
+              </picture>
             </div>
           </div>
         </div>
       </div>
-    </section>
 
-    <section id="features" class="features-section">
-      <div class="container">
-        <div class="section-head">
-          <h2>Smash VOC が選ばれる理由</h2>
+      <!-- 02 理解する -->
+      <div class="fpanel fpanel--understand" id="f-understand">
+        <nav class="ftabs" aria-label="できることの目次">
+          <a class="ftab ftab--listen" href="#f-listen"><img src="images/lp/icon_tab_listen.svg" width="41" height="31" alt="" />Listen</a>
+          <a class="ftab ftab--understand" href="#f-understand" aria-current="true"><img src="images/lp/icon_tab_understand.svg" width="41" height="41" alt="" />Understand</a>
+          <a class="ftab ftab--act" href="#f-act"><img src="images/lp/icon_tab_act.svg" width="35" height="35" alt="" />Act</a>
+        </nav>
+        <div class="fpanel__bg">
+          <div class="fpanel__card">
+            <h3 class="fpanel__ttl"><span class="fpanel__num">02</span>理解する</h3>
+            <p class="fpanel__lead"><span class="pk">言葉の裏にある本音</span>まで<br class="sp" />AIが読み取る。</p>
+            <div class="fpanel__fig fpanel__fig--understand">
+              <picture>
+                <source media="(max-width: 767px)" srcset="images/lp/sp_understand.png" width="554" height="1024" />
+                <img src="images/lp/pc_understand.png" width="2014" height="676" loading="lazy" alt="自由回答「商品自体は良いが、説明がわかりづらかった。もっと具体的な使い方を教えて欲しかった。でも、対応してくれたスタッフは親切でした。また利用するかは微妙です。」をAIが読み取り、感情分析（ポジティブ/ネガティブの感情）、要望・不満（不満・クレームの検知）、改善のヒント（商品改善・新サービスのヒント）、接客評価（スタッフ・接客に関する評価）、深掘り判定（さらに深掘りすべき回答か判定）に整理する。" />
+              </picture>
+            </div>
+            <p class="plan-note">※内容はプランによって異なります。</p>
+          </div>
         </div>
-        <div class="features">
-          <div class="feature">
-            <div class="feature-icon">🔗</div>
-            <h3>URLだけで開始</h3>
-            <p>Googleマップの店舗URLを入れるだけ。面倒な質問作成はAIに任せられます。</p>
-          </div>
-          <div class="feature">
-            <div class="feature-icon">💬</div>
-            <h3>チャット形式で高回答率</h3>
-            <p>吹き出しと変化する表情で、最適な選択肢でテンポよく進むため、従来のフォームより回答率が高まります。</p>
-          </div>
-          <div class="feature">
-            <div class="feature-icon">⚡</div>
-            <h3>口コミ連携で最適化</h3>
-            <p>アンケートののち、任意でGoogleMAPへの口コミの記入もAIが自動でお願いと連携を行います。</p>
+      </div>
+
+      <!-- 03 動く -->
+      <div class="fpanel fpanel--act" id="f-act">
+        <nav class="ftabs" aria-label="できることの目次">
+          <a class="ftab ftab--listen" href="#f-listen"><img src="images/lp/icon_tab_listen.svg" width="41" height="31" alt="" />Listen</a>
+          <a class="ftab ftab--understand" href="#f-understand"><img src="images/lp/icon_tab_understand.svg" width="41" height="41" alt="" />Understand</a>
+          <a class="ftab ftab--act" href="#f-act" aria-current="true"><img src="images/lp/icon_tab_act.svg" width="35" height="35" alt="" />Act</a>
+        </nav>
+        <div class="fpanel__bg">
+          <div class="fpanel__card">
+            <h3 class="fpanel__ttl"><span class="fpanel__num">03</span>動く</h3>
+            <p class="fpanel__lead">集めた声が、そのまま<br class="sp" /><span class="pk">次の行動に変わる。</span></p>
+            <ul class="acts">
+              <li class="act act--1">
+                <img src="images/lp/icon_act1.svg" width="58" height="58" alt="" />
+                <div><h4>回答を終えたお客様</h4><p>Googleマップの<br class="sp" />口コミ投稿へご案内</p></div>
+              </li>
+              <li class="act act--2">
+                <img src="images/lp/icon_act2.svg" width="58" height="58" alt="" />
+                <div><h4>深刻な不満</h4><p>責任者に優先表示し、<br class="sp" />追加で詳しくヒアリング</p></div>
+              </li>
+              <li class="act act--3">
+                <img src="images/lp/icon_act3.svg" width="58" height="58" alt="" />
+                <div><h4>商品への要望</h4><p>改善・開発向けの声<br class="sp" />として自動で分類</p></div>
+              </li>
+              <li class="act act--4">
+                <img src="images/lp/icon_act4.svg" width="58" height="58" alt="" />
+                <div><h4>ネガティブな声の急増</h4><p>すぐにお知らせ</p></div>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="pricing" class="cta-section">
-      <div class="container narrow">
-        <h2>まずは無料で、あなたの店舗に合うアンケートを</h2>
-        <p>本登録なしで1ヶ月試せます！！！</p>
-        <a href="#demo" class="btn btn-primary btn-large">無料で試す</a>
+    <!-- ========== レポート ========== -->
+    <section class="report" id="report">
+      <div class="inner">
+        <h2 class="ttl-l"><span class="mk">見るべきポイントも、<br class="sp" />AIが先に教えてくれる。</span></h2>
+        <div class="report__fig">
+          <picture>
+            <source media="(max-width: 767px)" srcset="images/lp/sp_report.png" width="582" height="1594" />
+            <img src="images/lp/pc_report.png" width="2014" height="878" loading="lazy" alt="従来のレポート：何件あったかの集計。回答数、満足度の平均のみ。自由回答はそのまま一覧。何をすべきかがわからない。AIレポート：今、何をすべきか（意思決定支援）。「遅い」という声、57件。63%が土日に集中。【優先】今すぐ対応すべき重大な意見、【警告】急増している不満トレンド、【発見】高評価に繋がっている要因/新商品アイデア。重要な意見を抽出、感情やトレンドを分析、次のアクションを提案。" />
+          </picture>
+        </div>
+        <p class="plan-note">※内容はプランによって異なります。</p>
+      </div>
+    </section>
+
+    <!-- ========== 活用シーン ========== -->
+    <section class="scenes" id="scenes">
+      <div class="inner">
+        <h2 class="ttl-l"><span class="mk">顧客との接点がある<br class="sp" />場所なら、どこでも。</span></h2>
+      </div>
+      <div class="scenes__wrap">
+        <button class="scenes__btn scenes__btn--prev" type="button" aria-label="前のカードへ"></button>
+        <ul class="scenes__list" id="scenes-list">
+          <li><img src="images/lp/icon_ind_food.svg" width="269" height="211" loading="lazy" alt="飲食チェーン：「料理はおいしいけど、呼んでも店員さんが来ない。」設置場所：テーブル、レシート" /></li>
+          <li><img src="images/lp/icon_ind_shop.svg" width="269" height="211" loading="lazy" alt="販売店・商業施設：「探している商品の場所がわからなかった。」設置場所：レジ横、会員アプリ" /></li>
+          <li><img src="images/lp/icon_ind_maker.svg" width="269" height="211" loading="lazy" alt="食品・飲料メーカー：「味は好きだけど、開けにくい。」設置場所：商品パッケージ" /></li>
+          <li><img src="images/lp/icon_ind_hotel.svg" width="269" height="211" loading="lazy" alt="ホテル・観光施設：「部屋は満足だけど、朝食の待ち時間だけ長かった。」設置場所：客室、チェックアウト時" /></li>
+          <li><img src="images/lp/icon_ind_salon.svg" width="269" height="211" loading="lazy" alt="サロン・サービス業：「担当の方には、直接言いづらいけど…」設置場所：受付、予約アプリ" /></li>
+          <li><img src="images/lp/icon_ind_ec.svg" width="269" height="211" loading="lazy" alt="EC・通販：「効果はありそうだけど、錠剤が大きくて飲みにくい。」設置場所：同梱カード、購入後メール" /></li>
+        </ul>
+        <button class="scenes__btn scenes__btn--next" type="button" aria-label="次のカードへ"></button>
+      </div>
+      <div class="scenes__dots" id="scenes-dots" aria-hidden="true"></div>
+    </section>
+
+    <!-- ========== 始め方 ========== -->
+    <section class="howto" id="howto">
+      <div class="inner">
+        <p class="pill pill--yellow">カンタン設定</p>
+        <h2 class="ttl-l"><span class="mk">AIと話すだけで、<br class="sp" />その日から始められる。</span></h2>
+        <p class="howto__lead">設定の目安は30分程度</p>
+        <ol class="steps">
+          <li>
+            <span class="steps__num">1</span>
+            <span class="steps__ic"><img src="images/lp/icon_step1.svg" width="45" height="39" alt="" /></span>
+            <div class="steps__txt">
+              <h3>AIにお店のことを話す</h3>
+              <p>業種や聞きたいこと、口調などをチャットで答えるだけ。GoogleマップのURLがあれば、お店の情報と口コミをもとにAIが組み立てます。</p>
+            </div>
+          </li>
+          <li>
+            <span class="steps__num">2</span>
+            <span class="steps__ic"><img src="images/lp/icon_step2.svg" width="33" height="41" alt="" /></span>
+            <div class="steps__txt">
+              <h3>アンケートが自動で完成</h3>
+              <p>AIがたたき台を作成。質問はあとから自由に調整できます。</p>
+            </div>
+          </li>
+          <li>
+            <span class="steps__num">3</span>
+            <span class="steps__ic"><img src="images/lp/icon_step3.svg" width="38" height="38" alt="" /></span>
+            <div class="steps__txt">
+              <h3>QRを置く・リンクを送る</h3>
+              <p>テーブル、パッケージ、メールなどに。今アンケートを案内している場所があれば、QRやリンクを差し替えるだけ。その日から声が集まり始めます。</p>
+            </div>
+          </li>
+          <li>
+            <span class="steps__num">4</span>
+            <span class="steps__ic"><img src="images/lp/icon_step4.svg" width="37" height="34" alt="" /></span>
+            <div class="steps__txt">
+              <h3>声を確認して、次の一手へ</h3>
+              <p>集まった声と、次の一手がわかるレポートは、管理画面から確認できます。回答を終えたお客様には、Googleマップへの口コミ投稿もご案内します。</p>
+            </div>
+          </li>
+        </ol>
+        <div class="howto__fig">
+          <picture>
+            <source media="(max-width: 767px)" srcset="images/lp/sp_setup.png" width="571" height="1342" />
+            <img src="images/lp/pc_setup.png" width="1949" height="661" loading="lazy" alt="AIからの質問「どんな業種ですか？」「どんな商品・サービスを扱っていますか？」「お客様に何を聞きたいですか？」「どこまで深掘りしたいですか？」「丁寧/カジュアルなど、どんな口調にしますか？」に答えると、AIが、お客様のニーズに合わせた質問、より深いインサイトを引き出す質問、顧客に合わせた回答の分岐を組み立て、あなたのお店に合わせた最適なアンケートを生成する。" />
+          </picture>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 料金 ========== -->
+    <section class="price" id="pricing">
+      <div class="inner">
+        <h2 class="ttl-l"><span class="mk">料金プラン</span></h2>
+        <p class="price__lead">プランの違いは、使えるQRの数だけ。<br class="sp" />シナリオ数・メンバー数は無制限です。</p>
+        <div class="plans">
+          <!-- ベーシック -->
+          <article class="plan plan--basic">
+            <img class="plan__badge" src="images/lp/badge_30days.svg" width="135" height="135" alt="30日間無料" />
+            <header class="plan__hd">
+              <p class="plan__tag">まずは1か所から</p>
+              <h3>ベーシック</h3>
+            </header>
+            <div class="plan__bd">
+              <div class="plan__price plan__price--free">
+                <p class="plan__first">最初の<br />30日間</p>
+                <p class="plan__zero"><span>￥</span>0</p>
+                <span class="plan__tri" aria-hidden="true"></span>
+                <p class="plan__after"><small>31日目から</small><b>￥4,980</b><span>/1か月あたり（税抜）</span></p>
+              </div>
+              <p class="plan__qr"><img src="images/lp/icon_qr.svg" width="59" height="59" alt="" /><span>QR<b>1</b>個</span></p>
+              <ul class="plan__checks">
+                <li>無料期間中も、すべての機能が使えます</li>
+                <li>初期費用0円</li>
+              </ul>
+              <div class="cta-main">
+                <a class="btn btn--pink btn--lg js-signup" data-loc="pricing_basic" href="https://smash.buzz/sign-up"><span class="btn__num">30</span>日間無料で始める<span class="btn__arw" aria-hidden="true">＞</span></a>
+                <p class="cta-note">クレジットカード登録不要</p>
+              </div>
+            </div>
+          </article>
+          <!-- プロ -->
+          <article class="plan">
+            <header class="plan__hd">
+              <p class="plan__tag">複数店舗・複数商品で</p>
+              <h3>プロ</h3>
+            </header>
+            <div class="plan__bd">
+              <div class="plan__price">
+                <p class="plan__after"><b>￥19,800</b><span>/1か月あたり（税抜）</span></p>
+              </div>
+              <p class="plan__qr"><img src="images/lp/icon_qr.svg" width="59" height="59" alt="" /><span>QR<b>5</b>個</span></p>
+              <a class="btn btn--yline js-signup" data-loc="pricing_pro" href="https://smash.buzz/sign-up">無料で始める<span class="btn__arw" aria-hidden="true">＞</span></a>
+              <p class="plan__note">まずはベーシック（30日間無料）で始めて、<br />管理画面からいつでもプロに切り替えられます。<br />※切り替えた時点から有料になります</p>
+            </div>
+          </article>
+          <!-- エンタープライズ -->
+          <article class="plan">
+            <header class="plan__hd">
+              <p class="plan__tag">大規模・個別のご要望に</p>
+              <h3>エンタープライズ</h3>
+            </header>
+            <div class="plan__bd">
+              <div class="plan__ask">
+                <p>ご相談ください</p>
+                <span>個別見積り</span>
+              </div>
+              <a class="btn btn--yline js-contact" data-loc="pricing_enterprise" href="https://smash.ne.jp/contact">お問い合わせ<span class="btn__arw" aria-hidden="true">＞</span></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== FAQ ========== -->
+    <section class="faq" id="faq">
+      <div class="inner">
+        <p class="pill pill--yellow pill--wide">FAQ</p>
+        <h2 class="ttl-l">よくあるご質問</h2>
+        <dl class="faq__list" id="faq-list">
+          <div class="faq__item">
+            <dt>クレジットカードの登録は必要ですか？</dt>
+            <dd>30日間の無料期間は、カードを登録しなくても全機能をお使いいただけます。</dd>
+          </div>
+          <div class="faq__item">
+            <dt>無料期間が終わったらどうなりますか？</dt>
+            <dd>カードを登録していなければ、課金はされません。新しい回答の受付は止まりますが、それまでに集まった声やレポートは引き続きご覧いただけます。</dd>
+          </div>
+          <div class="faq__item">
+            <dt>設定に専門知識は必要ですか？</dt>
+            <dd>必要ありません。AIの質問に答えるだけで、アンケートのたたき台ができあがります。<br class="pc" />公開までの目安は30分程度です。</dd>
+          </div>
+          <div class="faq__item faq__item--more">
+            <dt>回答するお客様はアプリの<br class="sp" />インストールが必要ですか？</dt>
+            <dd>不要です。QRを読み取るか、リンクを開くだけで回答できます。</dd>
+          </div>
+          <div class="faq__item faq__item--more">
+            <dt>ECなど、店舗がなくても使えますか？</dt>
+            <dd>使えます。URLをWebサイトや購入後のメール、同梱カードなどに載せて、声を集められます。</dd>
+          </div>
+          <div class="faq__item faq__item--more">
+            <dt>今使っているアンケートから切り替えられますか？</dt>
+            <dd>はい、今ある導線はそのままに、リンクの変更のみで切り替えられます。</dd>
+          </div>
+          <div class="faq__item faq__item--more">
+            <dt>途中でプランを変更できますか？</dt>
+            <dd>管理画面からいつでも変更できます。プロへの変更はすぐに反映されます（無料期間中に変更した場合は、その時点から有料になります）。ベーシックへの変更は、次回の更新日から反映されます。</dd>
+          </div>
+          <div class="faq__item faq__item--more">
+            <dt>解約すると、すぐ使えなくなりますか？</dt>
+            <dd>更新を停止しても、利用期間の終了日まではそのままお使いいただけます。<br class="pc" />終了後も、集まった声とレポートは引き続きご覧いただけます。</dd>
+          </div>
+          <div class="faq__item faq__item--more">
+            <dt>口コミのご案内は、満足した<br class="sp" />お客様だけに出しますか？</dt>
+            <dd>いいえ。評価にかかわらず、回答を終えたすべてのお客様にご案内します。</dd>
+          </div>
+        </dl>
+        <button class="faq__more" id="faq-more" type="button" aria-expanded="false" aria-controls="faq-list"><span class="vh">残りの質問を表示する</span></button>
+      </div>
+    </section>
+
+    <!-- ========== 最終CTA ========== -->
+    <section class="last" id="cta">
+      <div class="inner">
+        <h2 class="last__ttl">お客様の声を<br class="sp" /><span class="gy">「集める」</span>から<span class="pk">「活かす」</span>へ。</h2>
+        <p class="last__lead">その「普通」の理由、<br class="sp" />まずは30日間、聞いてみませんか。</p>
+        <div class="last__cta">
+          <div class="cta-main">
+            <a class="btn btn--pink btn--lg btn--spark js-signup" data-loc="final" href="https://smash.buzz/sign-up"><span class="btn__num">30</span>日間無料で始める<span class="btn__arw" aria-hidden="true">＞</span></a>
+            <p class="cta-note cta-note--dark">クレジットカード登録不要</p>
+          </div>
+          <a class="btn btn--line btn--md js-try" data-loc="final" href="#demo">まず体験してみる<span class="btn__arw" aria-hidden="true">＞</span></a>
+        </div>
+        <p class="last__dl"><a class="js-ebook" href="https://smash.ne.jp/ebooks/">資料ダウンロードはこちら ＞</a></p>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="container">
-      <p>&copy; 2026 Smash VOC. All rights reserved.</p>
+  <!-- ========== フッター ========== -->
+  <footer class="ft">
+    <div class="ft__legal">
+      <ul>
+        <li><a href="https://smash.ne.jp/voc/terms/">利用規約</a></li>
+        <li><a href="https://smash.ne.jp/voc/tokushoho/">特定商取引法に基づく表記</a></li>
+      </ul>
     </div>
+    <div class="inner ft__in">
+      <a class="ft__logo" href="https://smash.ne.jp/"><img src="images/lp/logo.svg" alt="Smash" width="113" height="47" loading="lazy" /></a>
+      <div class="ft__col">
+        <p>Solution</p>
+        <ul>
+          <li><a href="https://smash.ne.jp/chatbot">解約受付チャットボット</a></li>
+          <li><a href="https://smash.ne.jp/chatpage">チャットページ</a></li>
+          <li><a href="https://smash.ne.jp/casestudy/">導入事例</a></li>
+          <li><a href="https://smash.ne.jp/news/">お知らせ</a></li>
+          <li><a href="https://smash.ne.jp/dataPolicy/">データポリシー</a></li>
+        </ul>
+      </div>
+      <div class="ft__col">
+        <p>Company</p>
+        <ul>
+          <li><a href="https://smash.ne.jp/about">会社概要</a></li>
+          <li><a href="https://smash.ne.jp/policy/">プライバシーポリシー</a></li>
+          <li><a href="https://smash.ne.jp/contact">お問合わせ</a></li>
+          <li><a href="https://smash.ne.jp/ebooks">資料ダウンロード</a></li>
+        </ul>
+      </div>
+      <div class="ft__col">
+        <p>Follow us</p>
+        <ul>
+          <li><a href="https://note.smash.ne.jp/" target="_blank" rel="noopener">note</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="ft__copy">&copy; Smash Co., Ltd.</p>
   </footer>
 
-  <script src="script.js?v=2"></script>
+  <script src="lp.js?v=3"></script>
+  <script src="script.js?v=3"></script>
 </body>
 </html>

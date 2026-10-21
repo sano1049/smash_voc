@@ -618,8 +618,8 @@ function buildChatFlow(info) {
     },
     {
       type: "final",
-      text: "Smash VOCでは、GoogleマップURL以外にも、簡単なやりとりでアンケートが作成できます。\n回答者一人ひとりと「対話」するアンケート、あなたのお店でも取り入れてみませんか？",
-        text: "ここまでは、ほんのさわりです。\n製品版では、AIがお客様の自由な言葉まで理解して聞き返し、集まった声から「なぜ」と次の一手がわかるレポートをご覧いただけます。\nクレジットカード登録不要",
+      title: "ここまでは、ほんのさわりです。",
+      text: "製品版では、AIがお客様の自由な言葉まで理解して聞き返し、集まった声から「なぜ」と次の一手がわかるレポートをご覧いただけます。",
     }
   );
 
@@ -688,6 +688,7 @@ demoForm.addEventListener("submit", async (e) => {
 
   resetDemo();
   setLoading(true);
+  if (window.vocTrack) window.vocTrack("voc_demo_start", { demo_type: "map_url" });
 
   try {
     storeInfo = await fetchStoreInfo(url);
@@ -761,7 +762,8 @@ async function renderStep(index) {
     scrollToBottom();
   } else if (step.type === "final") {
     await wait(BOT_THINK_MS);
-    addFinalCard(interpolate(step.text, storeInfo));
+    addFinalCard(interpolate(step.text, storeInfo), step.title);
+    if (window.vocTrack) window.vocTrack("voc_demo_complete");
     if (stepCountEl) stepCountEl.textContent = "";
     scrollToBottom();
   }
@@ -773,8 +775,8 @@ function addMessage(sender, text, mood = "neutral") {
 
   if (sender === "bot" && mood && mood !== "neutral") {
     const img = document.createElement("img");
-    img.src = `images/${mood}.png`;
-    img.alt = mood === "happy" ? "どうぞ" : "かなしい";
+    img.src = mood === "sad" ? "images/lp/avatar_ai_sad.png" : "images/lp/avatar_ai_smile.png";
+    img.alt = "";
     img.className = "avatar";
     row.appendChild(img);
   }
@@ -865,7 +867,7 @@ function renderChoices(choices, multi = false) {
 
   const nextBtn = document.createElement("button");
   nextBtn.type = "button";
-  nextBtn.className = "btn btn-primary choice-next";
+  nextBtn.className = "btn btn--pink choice-next";
   nextBtn.textContent = "次へ";
   nextBtn.disabled = true;
   nextBtn.addEventListener("click", () => handleMultiChoice(Array.from(selected)));
@@ -886,23 +888,34 @@ function disableChoices() {
   buttons.forEach((btn) => (btn.disabled = true));
 }
 
-function addFinalCard(text) {
+function addFinalCard(text, title) {
   const card = document.createElement("div");
   card.className = "final-card";
 
+  if (title) {
+    const h = document.createElement("p");
+    h.className = "final-card__ttl";
+    h.textContent = title;
+    card.appendChild(h);
+  }
+
   const p = document.createElement("p");
+  p.className = "final-card__txt";
   p.textContent = text;
   card.appendChild(p);
 
+  // 申込ページへ。計測とパラメータ引き継ぎは lp.js（.js-signup）が担当
   const cta = document.createElement("a");
-  cta.href = "#";
-  cta.className = "btn btn-primary";
+  cta.href = "https://smash.buzz/sign-up";
+  cta.className = "btn btn--pink js-signup";
+  cta.dataset.loc = "demo_final";
   cta.textContent = "30日間無料で始める";
-  cta.addEventListener("click", (e) => {
-    e.preventDefault();
-    alert("ここから本登録フローへ繋がります（デモ）");
-  });
   card.appendChild(cta);
+
+  const note = document.createElement("p");
+  note.className = "cta-note";
+  note.textContent = "クレジットカード登録不要";
+  card.appendChild(note);
 
   chatBody.appendChild(card);
 }
